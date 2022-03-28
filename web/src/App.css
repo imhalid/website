@@ -18,7 +18,7 @@
 }
 
 .card {
-  background: rgba(223, 223, 223, 0.35);
+  background: rgb(239 209 238 / 22%);
   box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.37);
   backdrop-filter: blur(5.5px);
   -webkit-backdrop-filter: blur(5.5px);
@@ -58,7 +58,7 @@
   width: 5px;
   height: 30px;
   display: flex;
-  background-color: #b4b4b4;
+  background-color: #fcf5f7;
   border-radius: 30px;
   box-shadow: 4px 4px 10px 0px #0000001e;
   flex-shrink: 0;
@@ -84,7 +84,10 @@ body {
 }
 
 .timeline {
-  background-image: url(./patern.png);
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: center;
+  background-image: url(https://images.unsplash.com/photo-1556139902-7367723b7e9e?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=2670&q=80);
 }
 /*
 .timeline {
