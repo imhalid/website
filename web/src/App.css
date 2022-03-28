@@ -1,18 +1,18 @@
 * {
   margin: 0px;
   padding: 0px;
-  color: #f1f1f1;
+  color: #161616;
 }
 
 *::selection {
-  background: #d9d9d9;
+  background: #bb9bee;
   color: #fff;
 }
 
 .timeline {
   min-height: 100vh;
   background-color: #f1f1f1;
-  padding: 20px;
+  /* padding: 20px; */
   display: flex;
   justify-content: center;
   align-items: center;
@@ -85,14 +85,15 @@ body {
   background-color: #434343;
   background-image: linear-gradient(#434343, #282828);
 }
-
+/* 
 .timeline {
   background-repeat: no-repeat;
   background-size: cover;
   background-position: center;
   background-image: url(./Taieri.svg);
   background-color: rgb(49, 49, 49);
-}
+} */
+
 /*
 .timeline {
   background-color: transparent;
