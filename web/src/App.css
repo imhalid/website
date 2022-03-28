@@ -1,6 +1,7 @@
 * {
   margin: 0px;
   padding: 0px;
+  color: #f1f1f1;
 }
 
 *::selection {
@@ -18,7 +19,7 @@
 }
 
 .card {
-  background: rgb(239 209 238 / 22%);
+  background: rgba(255, 255, 255, 0.22);
   box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.37);
   backdrop-filter: blur(5.5px);
   -webkit-backdrop-filter: blur(5.5px);
@@ -39,6 +40,10 @@
   height: 50px;
   border-radius: 50%;
   background-color: #ffd32d;
+  background-image: url(../public/logo512.png);
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: cover;
   display: flex;
   box-shadow: 4px 4px 10px 0px #0000001e;
   flex-shrink: 0;
@@ -79,15 +84,14 @@ body {
   height: 100%;
   background-color: #434343;
   background-image: linear-gradient(#434343, #282828);
-  overflow-x: hidden;
-  overflow-y: hidden;
 }
 
 .timeline {
   background-repeat: no-repeat;
   background-size: cover;
   background-position: center;
-  background-image: url(https://images.unsplash.com/photo-1556139902-7367723b7e9e?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=2670&q=80);
+  background-image: url(./Taieri.svg);
+  background-color: rgb(49, 49, 49);
 }
 /*
 .timeline {
