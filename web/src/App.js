@@ -1,11 +1,11 @@
 import "./App.css";
 import Background from "./Background";
+//<Background />
 
 function App() {
   return (
     <div className="container">
       <div class="timeline">
-        <Background />
         <div id="content"></div>
         <div class="card">
           <div class="icon"></div>

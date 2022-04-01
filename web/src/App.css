@@ -85,14 +85,23 @@ body {
   background-color: #434343;
   background-image: linear-gradient(#434343, #282828);
 }
-/* 
+
 .timeline {
-  background-repeat: no-repeat;
-  background-size: cover;
-  background-position: center;
-  background-image: url(./Taieri.svg);
-  background-color: rgb(49, 49, 49);
-} */
+  background: linear-gradient(123deg, #fffcac 0%, #ffffff 67%),
+    linear-gradient(180deg, #d8d8d8 0%, #6b0000 100%),
+    linear-gradient(
+      142deg,
+      #f9f5f0 0%,
+      #f9f5f0 33%,
+      #f2ead3 calc(33% + 1px),
+      #f2ead3 50%,
+      #f4991a calc(50% + 1px),
+      #f4991a 62%,
+      #321313 calc(62% + 1px),
+      #321313 100%
+    );
+  background-blend-mode: multiply, overlay, normal;
+}
 
 /*
 .timeline {
