@@ -86,6 +86,7 @@ body {
   background-image: linear-gradient(#434343, #282828);
 }
 
+/* https://gradienta.io */
 .timeline {
   background: linear-gradient(123deg, #fffcac 0%, #ffffff 67%),
     linear-gradient(180deg, #d8d8d8 0%, #6b0000 100%),
