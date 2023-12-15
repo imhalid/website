@@ -33,7 +33,7 @@ export default function Navbar(): JSX.Element {
             Frontend Developer
           </span>
         </Link>
-        {/* <CvModal /> */}
+        <CvModal />
       </div>
       <ul className="flex gap-3">
         {navbarLinks.map(({ name, href }: NavbarLink) => (
