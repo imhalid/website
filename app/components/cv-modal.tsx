@@ -1,61 +1,89 @@
 'use client'
 import { useState, useEffect, useRef } from "react"
 import { useTransition, animated } from '@react-spring/web'
+import CV from "./cv"
 
 export default function CvModal(): JSX.Element {
  const [isOpen, setIsOpen] = useState(false)
  const modalRef = useRef(null)
+ const backdropRef = useRef(null)
 
- const handleDialogChange = () => setIsOpen(!isOpen)
+ const handleDialogChange = () => setIsOpen(true)
 
- const transition = useTransition(isOpen, {
+ const transitionCV = useTransition(isOpen, {
  from: {
   opacity: 0,
-  transform: 'translate3d(0, -40px, 0)',
+  transform: 'translate3d(0, 40px, 0)',
  },
  enter: {
   opacity: 1,
-  transform: 'translate3d(0, 0px, 0)',
+  transform: 'translate3d(0, 0, 0)',
  },
  leave: {
   opacity: 0,
-  transform: 'translate3d(0, -40px, 0)',
+  transform: 'translate3d(0, 40px, 0)',
  },
  })
 
- useEffect(() => {
-  const handleClickOutside = (event: Event) => {
-   if (modalRef.current && (modalRef.current as HTMLElement).contains(event.target as Node)) {
-    setIsOpen(false);
-   }
+ const transitionBackdrop = useTransition(isOpen, {
+ from: {
+  opacity: 0,
+ },
+ enter: {
+  opacity: 1,
+ },
+ leave: {
+  opacity: 0,
+ },
+ })
+
+
+ const handleClickOutside = (event: Event) => {
+  if (backdropRef.current && backdropRef.current === event.target) {
+   setIsOpen(false);
   }
-
-
- document.addEventListener("mousedown", handleClickOutside)
- return () => {
-  document.removeEventListener("mousedown", handleClickOutside)
  }
- }, [modalRef, setIsOpen])
+
+ useEffect(() => {
+  document.addEventListener("mousedown", handleClickOutside);
+  return () => {
+   document.removeEventListener("mousedown", handleClickOutside);
+  }
+ }, [backdropRef, setIsOpen]);
 
  return (
- <>
-  <button onClick={handleDialogChange}>
-  CV
-  </button>
+  <div className="test">
+   <button onClick={handleDialogChange}>
+    CV
+   </button>
+   <div className="-translate-x-1/2 -translate-y-1/2 absolute left-1/2 top-1/2 w-full h-full pointer-events-none">
+   {transitionCV((style, item) =>
+    item ?
+     <>
+      <animated.div
+       className='z-10 relative shadow-2xl rounded-md'
+       ref={modalRef}
+       style={{
+        ...style,
+       }}
+      >
+       <CV />
+      </animated.div>
+      
+     </>
+     : null
+   )}
+   </div>
 
-  {transition((style, item) =>
-  item ?
-   <animated.div
-   ref={modalRef}
-   style={{
-    ...style,
-   }}
-   >
-   <div className="fixed inset-0 bg-gray-500 opacity-50"></div>
-   <div className="absolute w-96 h-96 top-10 left-10 bg-slate-200 rounded-md"></div>
-   </animated.div>
-   : null
-  )}
- </>
+   {
+    transitionBackdrop((style, item) =>
+     item ?
+      <animated.div ref={backdropRef} style={{
+       ...style,
+      }} className="fixed -z-10 inset-0 bg-neutral-300/50 backdrop-blur-sm opacity-50"></animated.div>
+      : null
+    )
+   }
+  </div>
  )
 }

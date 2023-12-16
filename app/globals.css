@@ -7,3 +7,16 @@ body {
   padding: 0;
   box-sizing: border-box;
 }
+
+.paragraph {
+  @apply text-xs text-gray-900;
+}
+
+.title {
+  @apply text-xl font-semibold text-gray-900;
+}
+
+.subtitle {
+  @apply text-lg text-gray-600;
+}
+
