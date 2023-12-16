@@ -13,15 +13,18 @@ export default function CvModal(): JSX.Element {
  const transitionCV = useTransition(isOpen, {
  from: {
   opacity: 0,
-  transform: 'translate3d(0, 40px, 0)',
+  transform: 'translateY(-100%)',
+  top: '0',
  },
  enter: {
   opacity: 1,
-  transform: 'translate3d(0, 0, 0)',
+  transform: 'translateY(0%)',
+  top: '50%',
  },
  leave: {
   opacity: 0,
-  transform: 'translate3d(0, 40px, 0)',
+  transform: 'translateY(-100%)',
+  top: '0',
  },
  })
 
@@ -56,31 +59,35 @@ export default function CvModal(): JSX.Element {
    <button onClick={handleDialogChange}>
     CV
    </button>
-   <div className="-translate-x-1/2 -translate-y-1/2 absolute left-1/2 top-1/2 w-full h-full pointer-events-none">
    {transitionCV((style, item) =>
     item ?
      <>
       <animated.div
-       className='z-10 relative shadow-2xl rounded-md'
+       className='z-20 cv-container relative shadow-2xl rounded-md'
        ref={modalRef}
        style={{
         ...style,
+        position: 'absolute', 
+        top: '120px', 
+        left: '50%', 
+        transform: 'translate(-50%, 0)', // ele
+        width: '100%',
+        height: '100%',
+        overflow: 'auto', 
        }}
       >
        <CV />
       </animated.div>
-      
      </>
      : null
    )}
-   </div>
 
    {
     transitionBackdrop((style, item) =>
      item ?
       <animated.div ref={backdropRef} style={{
        ...style,
-      }} className="fixed -z-10 inset-0 bg-neutral-300/50 backdrop-blur-sm opacity-50"></animated.div>
+      }} className="fixed z-10 inset-0 bg-neutral-300/50 backdrop-blur-sm opacity-50"></animated.div>
       : null
     )
    }
