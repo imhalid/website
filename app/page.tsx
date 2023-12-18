@@ -2,6 +2,7 @@
 import Navbar from "@/app/components/navbar"
 import CanvasComponent from "@/app/components/canvas/canvas"
 import MessageComponent from "@/app/components/message"
+import ObjectComponent from "@/app/components/object"
 export default function Home() {
   return (
     <main className="flex min-h-screen flex-col items-center justify-between p-24">
@@ -14,7 +15,9 @@ export default function Home() {
         <section className="grid-container">
           <div className="a">a</div>
           <div className="b">b</div>
-          <div className="c">c</div>
+          <div className="c">
+            <ObjectComponent />
+          </div>
           <div className="d">d</div>
           <div className="e">e</div>
           <div className="f">f</div>

@@ -13,12 +13,6 @@ export default function Scene() {
     position: [0, 0, 0],
   })
 
-
-
-
-  
-
-
   const fontProps = { font: '/PT-Serif.woff', fontSize: fontControls.fontSize, letterSpacing: fontControls.letterSpacing, lineHeight: fontControls.lineHeight, 'material-toneMapped': false }
   return (
     <>
