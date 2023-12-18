@@ -8,7 +8,7 @@ export default function CanvasComponent() {
   <div className="w-full h-96">
   <Canvas>
    <OrbitControls />
-  <color attach="background" args={["#fffaaa"]} />
+  <color attach="background" args={["#fff"]} />
    <Scene />
   </Canvas>
   </div>
