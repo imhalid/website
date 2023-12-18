@@ -1,20 +1,24 @@
 'use client'
 import { Canvas } from "@react-three/fiber";
 import { OrbitControls } from "@react-three/drei";
+import { useFrame, useThree } from "@react-three/fiber";
 export default function ObjectComponent() {
   return (
-   <div>
+   <>
     <Canvas camera={
-     { fov: 75, near: 0.1, far: 1000, position: [0, 0, 2] }
-    }>
+     { fov: 5, near: 0.1, far: 1000, position: [20, 20, 20] }
+    }
+    className="w-96"
+    >
+    <color attach="background" args={['#000']} />
       <OrbitControls />
-      <ambientLight intensity={1} />
-      <spotLight position={[10, 15, 10]} angle={0.3} />
+        <pointLight position={[1, 1, 1]} color='#fedaae' decay={0.1} />
+        <spotLight position={[.5, 2, .5]} penumbra={1} intensity={1} angle={1} color='#ffff' />
       <mesh>
         <boxGeometry />
-        <meshNormalMaterial color="white" />
+          <meshStandardMaterial color="#fedaae" wireframe />
       </mesh>
     </Canvas>
-   </div>
+   </>
   );
 }

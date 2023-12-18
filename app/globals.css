@@ -34,18 +34,31 @@ body {
   background-color: #f9aaab;
 } */
 
-.grid-container {
-  display: grid;
-  grid-template: 
-    "a a a b b" 
-    "c d d d e" 
+.grid-container {  display: grid;
+  grid-template-columns: 2fr 1fr 1fr 1fr 2fr;
+  grid-template-rows: 1fr 1fr 1fr;
+  gap: 20px 30px;
+  grid-auto-flow: row;
+  grid-template-areas:
+    "a a a b b"
+    "c d d d e"
     "f f f g g";
-  width: 100%;
-  height: 100%;
-  gap: 10px;
-  align-items: center;
-  justify-items: center;
 }
+
+.a { grid-area: a; }
+
+.b { grid-area: b; }
+
+.c { grid-area: c; }
+
+.d { grid-area: d; }
+
+.e { grid-area: e; }
+
+.f { grid-area: f; }
+
+.g { grid-area: g; }
+
 
 @media (width <= 1024px) {
   .grid-container {
@@ -70,45 +83,7 @@ body {
   }
 }
 
-
-
-.a {
-  grid-area: a;
-  background-color: #f9aaab;
-}
-
-.b {
-  grid-area: b;
-  background-color: #f9aaab;
-}
-
-.c {
-  grid-area: c;
-  background-color: #f9aaab;
-}
-
-.d {
-  grid-area: d;
-  background-color: #f9aaab;
-}
-
-.e {
-  grid-area: e;
-  background-color: #f9aaab;
-}
-
-.f {
-  grid-area: f;
-  background-color: #f9aaab;
-}
-
-.g {
-  grid-area: g;
-  background-color: #f9aaab;
-}
-
 .grid-container > div {
-  background-color: rgba(2, 123, 219, 0.8);
   text-align: center;
   padding: 0;
   font-size: 30px;
