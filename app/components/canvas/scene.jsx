@@ -5,7 +5,7 @@ export default function Scene() {
   const container = useRef()
 
   const fontControls = useControls({
-    fontSize: { value: 0.5, min: 0.1, max: 1, step: 0.1 },
+    fontSize: { value: 3, min: 0.1, max: 5, step: 0.1 },
     letterSpacing: { value: 0, min: 0, max: 1, step: 0.1 },
     lineHeight: { value: 1, min: 0, max: 2, step: 0.1 },
     color: { value: '#000000' },
