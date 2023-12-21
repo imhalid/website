@@ -1,7 +1,7 @@
 import type { Metadata } from 'next'
 import { Inter } from 'next/font/google'
 import './globals.css'
-import grid from '../public/grid.svg'
+import pattern from '../public/pattern.svg'
 import Image from 'next/image'
 
 const inter = Inter({ subsets: ['latin'] })
@@ -17,12 +17,12 @@ export default function RootLayout({
   children: React.ReactNode
 }) {
 
-  console.log(grid)
+  console.log(pattern)
   return (
-    <html lang="en" className="relative h-[200vh]">
+    <html lang="en" className="bg-black text-white">
       <body className={inter.className}>
+        <div id='pattern'></div>
         {children}
-        {/* <Image src={grid} alt="grid" className='absolute top-0 left-0 w-full h-fit object-fill' /> */}
       </body>
     </html>
   )
