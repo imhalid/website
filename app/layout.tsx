@@ -1,8 +1,6 @@
 import type { Metadata } from 'next'
 import { Inter } from 'next/font/google'
 import './globals.css'
-import pattern from '../public/pattern.svg'
-import Image from 'next/image'
 
 const inter = Inter({ subsets: ['latin'] })
 
@@ -17,11 +15,11 @@ export default function RootLayout({
   children: React.ReactNode
 }) {
 
-  console.log(pattern)
   return (
     <html lang="en" className="bg-black text-white">
       <body className={inter.className}>
         <div id='pattern'></div>
+        <div id='noise'></div>
         {children}
       </body>
     </html>

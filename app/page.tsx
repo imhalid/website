@@ -1,17 +1,25 @@
 
 import Navbar from "@/app/components/navbar"
-import CanvasComponent from "@/app/components/canvas/canvas"
-import MessageComponent from "@/app/components/message"
-import ObjectComponent from "@/app/components/object"
+import Dimension from "@/app/components/dimension"
+import VintageGradient from "@/app/components/vintage-gradient"
+
 export default function Home() {
   return (
-    <main className="">
-      <div className="">
+    <main className="w-full h-screen overflow-hidden relative">
+      <div className="max-w-xl p-14">
         <Navbar />
-       
+        <h1 className="text-8xl font-bold mt-16">Welcome</h1>
+        <p className="text-base mt-5">Developer and designer making products that feel 'right' and faster. Focused on creating fluid and accessible interfaces. Interested in 3D modeling.</p>
+        <p className="text-base mt-5">I'm focused on Next.js right now. I love writing code, dealing with designs. Looking for a job where I can improve myself.</p>
+        <button id="accept-job" className="relative w-fit h-full flex items-center gap-3 mt-[46px] px-3.5 py-2.5 rounded-full">
+          <div className="signal"></div>
+          accept new job
+        </button>
+        <div className="jumbo absolute -inset-[10px] opacity-50"></div>
+        <Dimension />
+        <VintageGradient />
       </div>
     </main>
   )
 }
-
 

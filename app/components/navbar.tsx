@@ -28,10 +28,6 @@ export default function Navbar(): JSX.Element {
       <div className="flex flex-col">
         <Link href="/">
           Halid
-          <span> - </span>
-          <span className="text-neutral-500">
-            Frontend Developer
-          </span>
         </Link>
         {/* <CvModal /> */}
       </div>
