@@ -12,7 +12,7 @@ export default function Dimension() {
     })
   }, [])
   return (
-    <p className="absolute bottom-11 left-13">
+    <p className="absolute bottom-11 left-14 text-sm text-neutral-300">
     {dimension.width} x {dimension.height}
     </p>
   )

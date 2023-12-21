@@ -2,24 +2,41 @@
 @tailwind components;
 @tailwind utilities;
 
+:root {
+	--backdrop: hsl(0 0% 60% / 0.12);
+  --radius: 14;
+  --border: 3;
+  --backup-border: var(--backdrop);
+  --size: 200;
+  --base: 80;
+	--spread: 500;
+	--outer: 1;
+  --border-size: calc(var(--border, 2) * 1px);
+  --spotlight-size: calc(var(--size, 150) * 1px);
+  --hue: calc(var(--base) + (var(--xp, 0) * var(--spread, 0)));
+}
+
 ::webkit-scrollbar {
   width: 0px;
   background: transparent; /* make scrollbar transparent */
 }
 
-* {
+*,
+*:after,
+*:before {
   box-sizing: border-box;
   -webkit-font-smoothing: antialiased;
   text-rendering: optimizeLegibility;
   scroll-behavior: smooth;
 }
 
-@property --x {
+
+@property --gradient-a {
   syntax: '<color>';
   inherits: false;
   initial-value: #181818;
 }
-@property --y {
+@property --gradient-b {
   syntax: '<color>';
   inherits: false;
   initial-value: #181818;
@@ -28,22 +45,26 @@
 body {
   margin: 0;
   padding: 0;
-
   scrollbar-width: thin;
   scrollbar-color: transparent transparent;
+}
 
-  &::-webkit-scrollbar {
+ ::-webkit-scrollbar {
     width: 1px;
   }
 
-  &::-webkit-scrollbar-track {
+  ::-webkit-scrollbar-track {
     background: transparent;
   }
 
-  &::-webkit-scrollbar-thumb {
+  ::-webkit-scrollbar-thumb {
     background-color: transparent;
   }
-}
+
+::selection {
+    background: #b3ff1a;
+    color: #000;
+  }
 
 #pattern {
   position: absolute;
@@ -87,17 +108,14 @@ body {
 
 @keyframes changeRadius {
   0% {
-    background-color: #45ff1a;
     outline-color: #b3ff1a;
     filter: drop-shadow(0px 0px 13.2px rgba(179, 255, 26, 1));
   }
   50% {
-    background-color: #ffffff;
-    outline-color: #c9c9c9;
-    filter: drop-shadow(0px 0px 13.2px rgba(255, 255, 255, 1));
+    outline-color: #45ff1a;
+    filter: drop-shadow(0px 0px 0px rgba(179, 255, 26, 1));
   }
   100% {
-    background-color: #45ff1a;
     outline-color: #b3ff1a;
     filter: drop-shadow(0px 0px 13.2px rgba(179, 255, 26, 1));
   }
@@ -105,17 +123,17 @@ body {
 
 #accept-job {
   /*  needed for firefox to have a valid output */
-  --x: #181818;
-  --y: #111111;
+  --gradient-a: #181818;
+  --gradient-b: #111111;
   /**/
-  transition: --x 0.5s, --y 0.5s;
+  transition: --gradient-a 0.5s, --gradient-b 0.5s;
   transition-timing-function: cubic-bezier(0.1, 0.92, 0.8, 0.79);
-  background: linear-gradient(var(--x), var(--y));
+  background: linear-gradient(var(--gradient-a), var(--gradient-b));
 }
 
 #accept-job:hover {
-  --x: #ffb800;
-  --y: #ff8d07;
+  --gradient-a: #ffb800;
+  --gradient-b: #ff8d07;
 }
 
 @keyframes jumbo {
@@ -129,16 +147,12 @@ body {
 
 .jumbo {
   --stripes: repeating-linear-gradient(100deg, #fff 0%, #fff 7%, transparent 10%, transparent 12%, #fff 16%);
-  --stripesDark: repeating-linear-gradient(100deg, #181818 0%, #181818 7%, transparent 10%, transparent 12%, #181818 16%);
   --rainbow: repeating-linear-gradient(100deg, #fff 10%, #948467 15%, #fff 20%, #948467 25%, #fff 30%);
   background-image: var(--stripes), var(--rainbow);
   background-size: 300%, 200%;
   background-position: 50% 50%, 50% 50%;
-
   filter: blur(10px) opacity(50%) saturate(200%);
-
   mask-image: radial-gradient(ellipse at 100% 0%, black 40%, transparent 70%);
-
   pointer-events: none;
 }
 
@@ -151,4 +165,107 @@ body {
   animation: jumbo 60s linear infinite;
   background-attachment: fixed;
   mix-blend-mode: difference;
+}
+
+
+
+/* GLOW */
+
+article {
+  aspect-ratio: 3 / 4;
+  border-radius: calc(var(--radius) * 1px);
+  width: 260px;
+  position: relative;
+	grid-template-rows: 1fr auto;
+  box-shadow: 0 1rem 2rem -1rem black;
+  padding: 1rem;
+  display: grid;
+  gap: 1rem;
+  backdrop-filter: blur(calc(var(--cardblur, 5) * 1px));
+}
+
+[data-glow] {
+  
+  background-image: radial-gradient(
+    var(--spotlight-size) var(--spotlight-size) at
+    calc(var(--x, 0) * 1px)
+    calc(var(--y, 0) * 1px),
+    hsl(var(--hue, 210) calc(var(--saturation, 100) * 1%) calc(var(--lightness, 70) * 1%) / var(--bg-spot-opacity, 0.1)), transparent
+  );
+  background-color: var(--backdrop, transparent);
+  background-size: calc(100% + (2 * var(--border-size))) calc(100% + (2 * var(--border-size)));
+  background-position: 50% 50%;
+  background-attachment: fixed;
+  border: var(--border-size) solid var(--backup-border);
+  position: relative;
+}
+
+[data-glow]::before,
+[data-glow]::after {
+  pointer-events: none;
+  content: "";
+  position: absolute;
+  inset: calc(var(--border-size) * -1);
+  border: var(--border-size) solid transparent;
+  border-radius: calc(var(--radius) * 1px);
+  background-attachment: fixed;
+  background-size: calc(100% + (2 * var(--border-size))) calc(100% + (2 * var(--border-size)));
+  background-repeat: no-repeat;
+  background-position: 50% 50%;
+  mask:
+    linear-gradient(transparent, transparent),
+    linear-gradient(white, white);
+  mask-clip: padding-box, border-box;
+  mask-composite: intersect;
+}
+
+/* This is the emphasis light */
+[data-glow]::before {
+  background-image: radial-gradient(
+    calc(var(--spotlight-size) * 0.75) calc(var(--spotlight-size) * 0.75) at
+    calc(var(--x, 0) * 1px)
+    calc(var(--y, 0) * 1px),
+    hsl(var(--hue, 210) calc(var(--saturation, 100) * 1%) calc(var(--lightness, 50) * 1%) / var(--border-spot-opacity, 1)), transparent 100%
+  );
+  filter: brightness(2);
+}
+/* This is the spotlight */
+[data-glow]::after {
+  background-image: radial-gradient(
+    calc(var(--spotlight-size) * 0.5) calc(var(--spotlight-size) * 0.5) at
+    calc(var(--x, 0) * 1px)
+    calc(var(--y, 0) * 1px),
+    hsl(0 100% 100% / var(--border-light-opacity, 1)), transparent 100%
+  );
+}
+[data-glow] [data-glow] {
+  position: absolute;
+  inset: 0;
+  will-change: filter;
+  opacity: var(--outer, 1);
+}
+[data-glow] > [data-glow] {
+  border-radius: calc(var(--radius) * 1px);
+  border-width: calc(var(--border-size) * 20);
+  filter: blur(calc(var(--border-size) * 10));
+  background: none;
+  pointer-events: none;
+}
+[data-glow] > [data-glow]::before {
+  inset: -10px;
+  border-width: 10px;
+}
+[data-glow] [data-glow] {
+  border: none;
+}
+[data-glow] :is(a, button) {
+  border-radius: calc(var(--radius) * 1px);
+  border: var(--border-size) solid transparent;
+}
+[data-glow] :is(a, button) [data-glow] {
+  background: none;
+}
+[data-glow] :is(a, button) [data-glow]::before {
+  inset: calc(var(--border-size) * -1);
+  border-width: calc(var(--border-size) * 1);
 }
