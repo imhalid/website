@@ -5,53 +5,86 @@ import { useRef } from "react";
 import * as THREE from "three";
 import { Perf } from "r3f-perf";
 
-// Her bir örneği oluştururken dairesel bir düzende bir pozisyon atayın
-const spheresValue = Array.from({ length: 20 }, (_, index) => {
-  // Daire merkezi
-  const centerX = 0;
-  const centerY = 0;
-  const centerZ = 0;
-
-  // Daire yarıçapı
-  const radius = 3.5;
-
-  // Daire üzerindeki bir noktanın açısını hesaplayın
-  const angle = (index / 20) * 2 * Math.PI;
-
-  // Noktanın x, y ve z koordinatlarını hesaplayın
-  const x = centerX + radius * Math.cos(angle);
-  const y = centerY + radius * Math.sin(angle);
-  const z = 0; // Z koordinatını sabitleyin
-
-  return {
-    position: [x, y, z],
-    color: new THREE.Color("orange")
-  };
-});
-
 export default function Scene() {
   return (
-    <group>
+    <group position={[5,0,0]}>
       <Perf />
-      <Spheres />
+      <Lights />
+      <Spheres count={45} radius={3.5} speed={2} />
+      <Spheres count={40} radius={3} speed={2.1} />
+      <Spheres count={35} radius={2.5} speed={2.2} />
+      <Spheres count={30} radius={2} speed={2.3} />
+      <Spheres count={25} radius={1.5} speed={2.4} />
+      <Spheres count={20} radius={1} speed={2.5} />
+      <Spheres count={15} radius={0.5} speed={2.6} />
     </group>
   )
 }
 
-function Spheres({ count = 20 }) {
-const ref = useRef()
+function Lights() {
+  return (
+    <>
+      <ambientLight intensity={0.5} />
+      <spotLight position={[10, 10, 10]} intensity={1.5} />
+      <directionalLight position={[10, 10, 10]} intensity={1.5} />
+    </>
+  );
+}
+
+function Spheres({ count = 50, radius = 4, centerX=0, centerY=0, centerZ=0, color = new THREE.Color(), speed = 1, ...props }) {
+  const ref = useRef()
+  // Daire merkezi
+  // Her bir örneği oluştururken dairesel bir düzende bir pozisyon atayın
+  const spheresValue = Array.from({ length: count }, (_, index) => {
+
+    // Daire üzerindeki bir noktanın açısını hesaplayın
+    const angle = (index / count) * 2 * Math.PI;
+
+    // Noktanın x, y ve z koordinatlarını hesaplayın
+    const x = centerX + radius * Math.cos(angle);
+    const y = centerY + radius * Math.sin(angle);
+    const z = 0; // Z koordinatını sabitleyin
+
+    return {
+      position: [x, y, z],
+      color: new THREE.Color("orange")
+    };
+  });
+
   useFrame((state) => {
     const time = state.clock.getElapsedTime()
     ref.current.rotation.set(
-      time / 2,
       0,
-      0
+      2 * Math.PI * (time / speed),
+0 
     )
   })
   return (
-    <Instances limit={spheresValue.length} range={count} ref={ref}>
-      <sphereGeometry args={[0.5, 12, 12]} />
-      <meshNormalMaterial roughness={1} color="#f0f0f0" />
+    <Instances ref={ref}>
+      <sphereGeometry args={[0.1, 20, 20]} />
+      {/* <meshStandardMaterial roughness={1} /> */}
+      <shaderMaterial
+        vertexShader={`
+          varying vec3 vNormal;
+          varying vec2 vUv;
+
+          void main() {
+            vNormal = normal;
+            vUv = uv;
+            gl_Position = projectionMatrix * modelViewMatrix * instanceMatrix * vec4(position, 1.0);
+          }
+        `}
+        fragmentShader={`
+          varying vec3 vNormal;
+          varying vec2 vUv;
+          void main() {
+            vec3 color = vec3(1.0, 0.0, 0.0);
+            float light = dot(normalize(vNormal), normalize(vec3(0.0, 0.0, 1.0)));
+            gl_FragColor = vec4(vUv, 0.0, 1.0);
+          }
+        `}
+        
+       />
       {spheresValue.map((props, index) => (
         <Sphere key={index} {...props} />
       ))}
@@ -68,6 +101,7 @@ function Sphere({ color = new THREE.Color(), position, ...props }) {
       position[1],
       position[2]
     )
+    
   })
 
   return (
