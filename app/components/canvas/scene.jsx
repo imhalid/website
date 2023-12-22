@@ -1,26 +1,72 @@
-import { Text } from "@react-three/drei"
+import { Instances, Instance } from "@react-three/drei"
+import { useFrame } from "@react-three/fiber"
 import { useControls } from "leva"
 import { useRef } from "react";
-export default function Scene() {
-  const container = useRef()
+import * as THREE from "three";
 
-  const fontControls = useControls({
-    fontSize: { value: 3, min: 0.1, max: 5, step: 0.1 },
-    letterSpacing: { value: 0, min: 0, max: 1, step: 0.1 },
-    lineHeight: { value: 1, min: 0, max: 2, step: 0.1 },
-    color: { value: '#000000' },
-    rotation: [0, 0, 0],
-    position: [0, 0, 0],
+// Her bir örneği oluştururken dairesel bir düzende bir pozisyon atayın
+const spheresValue = Array.from({ length: 20 }, (_, index) => {
+  // Daire merkezi
+  const centerX = 0;
+  const centerY = 0;
+  const centerZ = 0;
+
+  // Daire yarıçapı
+  const radius = 3.5;
+
+  // Daire üzerindeki bir noktanın açısını hesaplayın
+  const angle = (index / 20) * 2 * Math.PI;
+
+  // Noktanın x, y ve z koordinatlarını hesaplayın
+  const x = centerX + radius * Math.cos(angle);
+  const y = centerY + radius * Math.sin(angle);
+  const z = 0; // Z koordinatını sabitleyin
+
+  return {
+    position: [x, y, z],
+    color: new THREE.Color("orange")
+  };
+});
+
+export default function Scene() {
+  return (
+    <Spheres />
+  )
+}
+
+function Spheres({ count = 20 }) {
+const ref = useRef()
+  useFrame((state) => {
+    const time = state.clock.getElapsedTime()
+    ref.current.rotation.set(
+      time / 2,
+      0,
+      0
+    )
+  })
+  return (
+    <Instances limit={spheresValue.length} range={count} ref={ref}>
+      <sphereGeometry args={[0.5, 12, 12]} />
+      <meshNormalMaterial roughness={1} color="#f0f0f0" />
+      {spheresValue.map((props, index) => (
+        <Sphere key={index} {...props} />
+      ))}
+    </Instances>
+  )
+}
+
+function Sphere({ color = new THREE.Color(), position, ...props }) {
+  const ref = useRef()
+  useFrame((state) => {
+    const time = state.clock.getElapsedTime()
+    ref.current.position.set(
+      position[0],
+      position[1],
+      position[2]
+    )
   })
 
-  const fontProps = { font: '/PT-Serif.woff', fontSize: fontControls.fontSize, letterSpacing: fontControls.letterSpacing, lineHeight: fontControls.lineHeight, 'material-toneMapped': false }
   return (
-    <>
-      <group ref={container}>
-        <Text {...fontProps} rotation={fontControls.rotation} color={fontControls.color} position={fontControls.position} anchorX="center" anchorY="middle">
-          Whereas disregard 
-        </Text>
-      </group>
-    </>
+    <Instance color={color} ref={ref} />
   )
 }

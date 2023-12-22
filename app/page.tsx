@@ -4,8 +4,10 @@ import Dimension from "@/app/components/dimension"
 import VintageGradient from "@/app/components/vintage-gradient"
 // import GlowButton from "@/app/components/glow-button"
 import Clock from "@/app/components/clock"
+import Scene from "@/app/components/canvas/canvas"
 export default function Home() {
   return (
+    <>
     <main className="w-full h-screen overflow-hidden relative">
       <div className="max-w-xl p-14">
         <Navbar />
@@ -23,6 +25,11 @@ export default function Home() {
         <Clock />
       </div>
     </main>
+    <div className="absolute w-full h-full top-0 left-0">
+        <Scene />
+    </div>
+    </>
+
   )
 }
 
