@@ -3,6 +3,7 @@ import { useFrame } from "@react-three/fiber"
 import { useControls } from "leva"
 import { useRef } from "react";
 import * as THREE from "three";
+import { Perf } from "r3f-perf";
 
 // Her bir örneği oluştururken dairesel bir düzende bir pozisyon atayın
 const spheresValue = Array.from({ length: 20 }, (_, index) => {
@@ -30,7 +31,10 @@ const spheresValue = Array.from({ length: 20 }, (_, index) => {
 
 export default function Scene() {
   return (
-    <Spheres />
+    <group>
+      <Perf />
+      <Spheres />
+    </group>
   )
 }
 
