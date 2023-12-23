@@ -6,16 +6,22 @@ import * as THREE from "three";
 import { Perf } from "r3f-perf";
 
 export default function Scene() {
+  const ref = useRef()
+  useFrame((state, delta) => {
+    const time = state.clock.getElapsedTime()
+    ref.current.rotation.y = Math.PI * 2 * (time / 2 * 0.2) % (Math.PI * 2)
+    ref.current.rotation.z = Math.PI * 2 * (time / 2 * 0.2) % (Math.PI * 2)
+  })
   return (
-    <group position={[5, 0, 0]}>
-      <Perf />
+    <group position={[5, 3, 0]} rotation={[0,0,0]}>
+      {/* <Perf /> */}
       <Lights />
-      <mesh rotation={[1,1,1]}>
-        <boxGeometry args={[1,1,1]} />
+      <mesh rotation={[1, 1, 1]} ref={ref}>
+        <boxGeometry args={[1, 1, 1]}  />
         <meshStandardMaterial color={0x80ffdb} />
       </mesh>
-      {Array.from({ length: 5 }, (_, index) => (
-        <Spheres count={50 * (index / 2)} radius={1 * index} speed={1 * index} key={index} index={index} />
+      {Array.from({ length: 10 }, (_, index) => (
+        <Spheres count={50 * (index / 2)} radius={2 * index} speed={3 * index} key={index} index={index} />
       ))}
     </group>
   )
@@ -53,21 +59,20 @@ function Spheres({ count = 50, radius = 4, centerX = 0, centerY = 0, centerZ = 0
   
   const rainbowColors = [0x7400b8, 0x6930c3, 0x5e60ce, 0x5390d9, 0x4ea8de, 0x48bfe3, 0x56cfe1, 0x64dfdf, 0x72efdd, 0x80ffdb]
 
-console.log(index % rainbowColors.length)
   useFrame((state, delta) => {
     const time = state.clock.getElapsedTime()
     // shaderMaterial.current.uTime = time
     ref.current.rotation.set(
       0,
       ref.current.rotation.y = Math.PI * 2 * (time / speed * .2) % (Math.PI * 2),
-      // 0,
-      ref.current.rotation.y = Math.PI * 2 * (time / speed * .2) % (Math.PI * 2)
+      0,
+      // ref.current.rotation.y = Math.PI * 2 * (time / speed * .2) % (Math.PI * 2)
     )
   })
   return (
     <Instances ref={ref} >
       <boxGeometry args={[0.1, 0.1, 0.1]} />
-      <meshStandardMaterial color={rainbowColors[index % rainbowColors.length]} />
+      <meshStandardMaterial color={rainbowColors[index % rainbowColors.length]} toneMapped={false}  wireframe/>
       {/* <sphereShaderMaterial ref={shaderMaterial} /> */}
       {spheresValue.map((props, index) => (
         <Sphere key={index} {...props} />
@@ -87,8 +92,8 @@ function Sphere({ color = new THREE.Color(), position, ...props }) {
     )
     ref.current.rotation.set(
       0,
-      // Math.sin(2 * Math.PI * (time / 2 * 0.2)),
-      0,
+      Math.sin(2 * Math.PI * (time / 2 * 0.2)),
+      // 0,
       0
     )
 
