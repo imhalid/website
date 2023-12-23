@@ -8,8 +8,8 @@ export default function CanvasComponent() {
  return (
   <>
    <Canvas camera={{ fov: 5, position: [0, 0, 120] }}>
-    {/* <OrbitControls /> */}
-    
+    <OrbitControls />
+    <color attach="background" args={["black"]} />
     <Scene />
    </Canvas>
      <Loader dataInterpolation={(p) => `Loading ${p.toFixed(2)}%`} />

@@ -1,5 +1,5 @@
-import { Instances, Instance } from "@react-three/drei"
-import { useFrame } from "@react-three/fiber"
+import { Instances, Instance, shaderMaterial } from "@react-three/drei"
+import { useFrame, extend } from "@react-three/fiber"
 import { useControls } from "leva"
 import { useRef } from "react";
 import * as THREE from "three";
@@ -7,9 +7,9 @@ import { Perf } from "r3f-perf";
 
 export default function Scene() {
   return (
-    <group position={[5,0,0]}>
+    <group position={[0, 0, 0]}>
       <Perf />
-      <Lights />
+      {/* <Lights /> */}
       <Spheres count={45} radius={3.5} speed={2} />
       <Spheres count={40} radius={3} speed={2.1} />
       <Spheres count={35} radius={2.5} speed={2.2} />
@@ -31,8 +31,9 @@ function Lights() {
   );
 }
 
-function Spheres({ count = 50, radius = 4, centerX=0, centerY=0, centerZ=0, color = new THREE.Color(), speed = 1, ...props }) {
+function Spheres({ count = 50, radius = 4, centerX = 0, centerY = 0, centerZ = 0, color = new THREE.Color(), speed = 1, ...props }) {
   const ref = useRef()
+  const shaderMaterial = useRef()
   // Daire merkezi
   // Her bir örneği oluştururken dairesel bir düzende bir pozisyon atayın
   const spheresValue = Array.from({ length: count }, (_, index) => {
@@ -51,40 +52,25 @@ function Spheres({ count = 50, radius = 4, centerX=0, centerY=0, centerZ=0, colo
     };
   });
 
-  useFrame((state) => {
+  useFrame((state, delta) => {
     const time = state.clock.getElapsedTime()
+    shaderMaterial.current.uTime = time
     ref.current.rotation.set(
       0,
-      2 * Math.PI * (time / speed),
-0 
+      // 2 * Math.PI * (time / speed * 0.05),
+      0,
+      0
+
     )
   })
+
+  const material = <sphereShaderMaterial ref={shaderMaterial} />
+  const geometry = <sphereGeometry args={[0.05, 20, 20]} />
   return (
     <Instances ref={ref}>
-      <sphereGeometry args={[0.1, 20, 20]} />
+      <sphereGeometry args={[0.05, 20, 20]} />
       {/* <meshStandardMaterial roughness={1} /> */}
-      <shaderMaterial
-        vertexShader={`
-          varying vec3 vNormal;
-          varying vec2 vUv;
-
-          void main() {
-            vNormal = normal;
-            vUv = uv;
-            gl_Position = projectionMatrix * modelViewMatrix * instanceMatrix * vec4(position, 1.0);
-          }
-        `}
-        fragmentShader={`
-          varying vec3 vNormal;
-          varying vec2 vUv;
-          void main() {
-            vec3 color = vec3(1.0, 0.0, 0.0);
-            float light = dot(normalize(vNormal), normalize(vec3(0.0, 0.0, 1.0)));
-            gl_FragColor = vec4(vUv, 0.0, 1.0);
-          }
-        `}
-        
-       />
+      <sphereShaderMaterial ref={shaderMaterial} />
       {spheresValue.map((props, index) => (
         <Sphere key={index} {...props} />
       ))}
@@ -101,10 +87,41 @@ function Sphere({ color = new THREE.Color(), position, ...props }) {
       position[1],
       position[2]
     )
-    
+
   })
 
   return (
     <Instance color={color} ref={ref} />
   )
 }
+
+const SphereShaderMaterial = shaderMaterial({
+  uTime: 0,
+},
+  `
+  varying vec3 vNormal;
+  varying vec2 vUv;
+  uniform float uTime;
+
+  void main() {
+    vec3 pos = position;
+    vNormal = normal;
+    vUv = uv;
+
+    gl_Position = projectionMatrix * modelViewMatrix * instanceMatrix * vec4(pos, 1.0);
+  }
+  `,
+  `
+  varying vec3 vNormal;
+  varying vec2 vUv;
+  uniform float uTime;
+  void main() {
+    vec3 color = vec3(1.0, 0.0, 0.0);
+    float light = dot(normalize(vNormal), normalize(vec3(0.0, 0.0, 1.0)));
+    gl_FragColor = vec4(vUv , 0.0, 1.0);
+  }
+  `
+
+)
+
+extend({ SphereShaderMaterial })

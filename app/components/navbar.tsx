@@ -35,7 +35,7 @@ export default function Navbar(): JSX.Element {
         {navbarLinks.map(({ name, href }: NavbarLink) => (
           <li key={name}>
             <Link href={href}>
-              {name}
+              <span className="line-through touch-none text-neutral-600">{name}</span>
             </Link>
           </li>
         ))}
