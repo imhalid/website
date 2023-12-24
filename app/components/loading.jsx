@@ -19,8 +19,6 @@ export default function Loading() {
       }
     });
 
-    
-
     tl.to(countDown.current, {
       textContent: 100,
       duration: 4, // animasyonun süresi 4 saniye
