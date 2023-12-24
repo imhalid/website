@@ -63,10 +63,9 @@ function Spheres({ count = 50, radius = 4, centerX = 0, centerY = 0, centerZ = 0
     const time = state.clock.getElapsedTime()
     // shaderMaterial.current.uTime = time
     ref.current.rotation.set(
+      ref.current.rotation.y = index % 2 === 1 ? Math.PI * 2 * (time / speed * .2) : 0,
+      ref.current.rotation.y = index % 2 === 0 ? Math.PI * 2 * (time / speed * .2) : 0,
       0,
-      ref.current.rotation.y = Math.PI * 2 * (time / speed * .2) % (Math.PI * 2),
-      0,
-      // ref.current.rotation.y = Math.PI * 2 * (time / speed * .2) % (Math.PI * 2)
     )
   })
   return (
