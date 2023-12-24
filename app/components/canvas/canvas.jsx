@@ -15,12 +15,12 @@ export default function CanvasComponent() {
    <Canvas camera={{ fov: 5, position: [0, 0, 120] }}>
     {/* <OrbitControls /> */}
     {/* <color attach="background" args={["black"]} /> */}
-    {/* <EffectComposer>
+    <EffectComposer>
       <FXAA />
      <Bloom luminanceThreshold={0} luminanceSmoothing={1} height={100}  />
       <ChromaticAberration offset={[0.001, 0.001]} />
       <TiltShift blur={0.2} />
-    </EffectComposer> */}
+    </EffectComposer>
 
     {/* <Effects>
          <afterimagePass damp={0.1}  />
