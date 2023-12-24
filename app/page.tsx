@@ -25,7 +25,7 @@ export default function Home() {
         <Clock />
       </div>
     </main>
-    <div className="absolute w-full h-full top-0 left-0">
+    <div className="absolute w-full h-full top-0 left-0 pointer-events-none -z-[5]">
         <Scene />
     </div>
     </>
