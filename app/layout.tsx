@@ -1,6 +1,7 @@
 import type { Metadata } from 'next'
 import { Inter } from 'next/font/google'
 import './globals.css'
+import Loading from '@/app/components/loading'
 const inter = Inter({ subsets: ['latin'] })
 
 export const metadata: Metadata = {
@@ -17,6 +18,7 @@ export default function RootLayout({
   return (
     <html lang="en" className="bg-black text-white">
       <body className={inter.className}>
+        <Loading />
         <div id='pattern'></div>
         <div id='noise'></div>
         {children}
