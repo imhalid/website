@@ -19,7 +19,7 @@ export default function Home() {
           Accept new job
         </button>
         <div className="jumbo absolute -inset-[10px] opacity-50"></div>
-        <Dimension />
+        {/* <Dimension /> */}
         <VintageGradient />
         {/* <GlowButton /> */}
         <Clock />

@@ -14,6 +14,6 @@ export default function Clock() {
     };
   }, [time]);
   return (
-    <p className="text-sm absolute bottom-11 right-12 text-neutral-300" suppressHydrationWarning>{time}</p>
+    <p className="text-sm absolute top-11 right-12 text-neutral-300" suppressHydrationWarning>{time}</p>
   )
 }

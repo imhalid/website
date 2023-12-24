@@ -18,7 +18,7 @@ export default function RootLayout({
   return (
     <html lang="en" className="bg-black text-white">
       <body className={inter.className}>
-        <Loading />
+        {/* <Loading /> */}
         <div id='pattern'></div>
         <div id='noise'></div>
         {children}

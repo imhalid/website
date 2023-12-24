@@ -17,8 +17,9 @@ export default function Scene() {
       {/* <Perf /> */}
       <Lights />
       <mesh rotation={[1, 1, 1]} ref={ref}>
-        <boxGeometry args={[1, 1, 1]}  />
-        <meshStandardMaterial color={0x80ffdb} />
+        <boxGeometry args={[1, 1, 1,8,8,8]}  />
+        <meshStandardMaterial color={0xade8f4} wireframe />
+        {/* <boxShaderMaterial wireframe /> */}
       </mesh>
       {Array.from({ length: 10 }, (_, index) => (
         <Spheres count={50 * (index / 2)} radius={2 * index} speed={3 * index} key={index} index={index} />
@@ -56,8 +57,11 @@ function Spheres({ count = 50, radius = 4, centerX = 0, centerY = 0, centerZ = 0
       // color: new THREE.Color(0x909090)
     };
   });
-  
-  const rainbowColors = [0x7400b8, 0x6930c3, 0x5e60ce, 0x5390d9, 0x4ea8de, 0x48bfe3, 0x56cfe1, 0x64dfdf, 0x72efdd, 0x80ffdb]
+  const rainbowColors = [0x143601, 0x1a4301, 0x245501, 0x538d22, 0x73a942, 0xaad576, 0xaad576, 0xaad576].toReversed()
+  // const rainbowColors = [0x10002b, 0x240046, 0x3c096c, 0x5a189a, 0x7b2cbf, 0x9d4edd, 0xc77dff, 0xe0aaff].toReversed()
+  // const rainbowColors = [0x03071e, 0x370617, 0x6a040f, 0x9d0208, 0xd00000, 0xdc2f02, 0xe85d04, 0xf48c06, 0xfaa307, 0xffba08].toReversed()
+  // const rainbowColors = [0x03045e, 0x023e8a, 0x0077b6, 0x0096c7, 0x00b4d8, 0x48cae4, 0x90e0ef, 0xade8f4].toReversed()
+  // const rainbowColors = [0xd8f3dc, 0xb7e4c7, 0x95d5b2, 0x74c69d, 0x52b788, 0x40916c, 0x2d6a4f, 0x1b4332, 0x081c15]
 
   useFrame((state, delta) => {
     const time = state.clock.getElapsedTime()
@@ -71,7 +75,7 @@ function Spheres({ count = 50, radius = 4, centerX = 0, centerY = 0, centerZ = 0
   return (
     <Instances ref={ref} >
       <boxGeometry args={[0.1, 0.1, 0.1]} />
-      <meshStandardMaterial color={rainbowColors[index % rainbowColors.length]} toneMapped={false}  wireframe/>
+      <meshStandardMaterial color={rainbowColors[index % rainbowColors.length]} />
       {/* <sphereShaderMaterial ref={shaderMaterial} /> */}
       {spheresValue.map((props, index) => (
         <Sphere key={index} {...props} />
@@ -103,8 +107,58 @@ function Sphere({ color = new THREE.Color(), position, ...props }) {
   )
 }
 
+
+const BoxShaderMaterial = shaderMaterial(
+  {
+    time: 0,
+    color: new THREE.Color(0x909090),
+    uWaveElevation: 0.5,
+    uWaveFrequency: [0.5, 0.5],
+    uWaveDirection: 1,
+    
+  },
+  `
+  varying vec2 vUv;
+  varying vec3 vNormal;
+  varying vec3 vPosition;
+  uniform float time;
+  uniform vec3 color;
+  uniform float uWaveElevation;
+uniform vec2 uWaveFrequency;
+uniform float uWaveDirection;
+  void main() {
+    vUv = uv;
+    vNormal = normal;
+    vPosition = position;
+
+   vec4 modelPosition = modelMatrix * vec4(position, 1.0);
+
+    float wave = sin(modelPosition.x * uWaveFrequency.x * uWaveDirection + uTime * 5.0) * uWaveElevation / 4.0;
+    modelPosition.y += wave;
+
+
+    vec4 viewPosition = viewMatrix * modelPosition;
+    vec4 projectedPosition = projectionMatrix * viewPosition;
+
+    gl_Position = projectedPosition;
+  }
+  `,
+  `
+  varying vec2 vUv;
+  varying vec3 vNormal;
+  varying vec3 vPosition;
+  uniform float time;
+  uniform vec3 color;
+  void main() {
+    gl_FragColor = vec4(color, 1.0);
+  }
+  `
+)
+
+extend({ BoxShaderMaterial })
+
 const SphereShaderMaterial = shaderMaterial({
-  uTime: 1, uRotaion: 1.5, uFrequency:0.5, uAmplitude:0.5,
+  uTime: 1, uRotaion: 1.5, uFrequency: 0.5, uAmplitude: 0.5,
 },
   `
   varying vec3 vNormal;
