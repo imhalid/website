@@ -8,7 +8,7 @@ const parisienne = Parisienne({ subsets: ["latin"], weight: ["400"] })
 export default function Projects() {
 console.log(parisienne)
   return (
-    <div className="mt-52 flex flex-wrap gap-3">
+    <div className="mt-52 flex flex-wrap gap-3 w-full justify-center">
       {/* HKARIX */}
       <Link href="https://hikarix.vercel.app" className="group">
         <div className="w-[400px] h-[300px] backdrop-blur-sm bg-neutral-800/40 p-1 rounded-md flex flex-col gap-1 ">
@@ -24,12 +24,12 @@ console.log(parisienne)
           </div>
           <div className="h-[10%] w-full bg-neutral-900/90 rounded-sm flex justify-between items-center px-5">
             <p>See live</p>
-            <div className="flex">
+            <div className="flex gap-2">
               <span>
-                <p>Three.js</p>
+                <p>3.js</p>
               </span>
               <span>
-                <p>JS</p>
+                <p>API</p>
               </span>
               <span>
                 <p>Next.js</p>
@@ -54,12 +54,12 @@ console.log(parisienne)
           </div>
           <div className="h-[10%] w-full bg-neutral-900/90 rounded-sm flex justify-between items-center px-5">
             <p>See live</p>
-            <div className="flex">
+            <div className="flex gap-2">
               <span>
-                <p>Three.js</p>
+                <p>FM</p>
               </span>
               <span>
-                <p>JS</p>
+                <p>Cntxt</p>
               </span>
               <span>
                 <p>Next.js</p>
