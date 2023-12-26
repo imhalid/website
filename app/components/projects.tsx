@@ -52,7 +52,11 @@ console.log(parisienne)
                 background: 'radial-gradient(circle, rgba(0,10,0,1) 0%, rgba(255,255,255,0) 100%)',
               }}
             ></div>
-            <Image src={cv} fill className="w-full h-full pointer-events-none object-cover object-right opacity-20 grayscale-[1] group-hover:grayscale-0 transition-all" alt="hikarix" />
+            <Image
+              src="https://www.halid.dev/images/cv.webp" fill
+              className="w-full h-full pointer-events-none object-cover object-right opacity-20 grayscale-[1] group-hover:grayscale-0 transition-all"
+              alt="hikarix"
+            />
           </div>
           <div className="h-[10%] w-full bg-neutral-900/90 rounded-sm flex justify-between items-center px-5">
             <p>See live</p>
