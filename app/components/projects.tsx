@@ -53,7 +53,7 @@ console.log(parisienne)
               }}
             ></div>
             <Image
-              src="https://www.halid.dev/images/cv.webp" fill
+              src="/images/cv.webp" fill
               className="w-full h-full pointer-events-none object-cover object-right opacity-20 grayscale-[1] group-hover:grayscale-0 transition-all"
               alt="hikarix"
             />
