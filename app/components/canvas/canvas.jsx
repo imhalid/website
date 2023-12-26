@@ -13,9 +13,8 @@ export default function CanvasComponent() {
         {/* <color attach="background" args={["black"]} /> */}
         <EffectComposer>
           <ChromaticAberration offset={[0.001, 0.001]} />
-          {/* <TiltShift blur={0.1} /> */}
+          <TiltShift />
         </EffectComposer>
-
         <Scene />
       </Canvas>
       <Loader dataInterpolation={(p) => `Loading ${p.toFixed(2)}%`} />
