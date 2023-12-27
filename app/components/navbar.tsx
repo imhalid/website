@@ -31,7 +31,7 @@ export default function Navbar(): JSX.Element {
         </Link>
         {/* <CvModal /> */}
       </div>
-      <ul className="flex gap-3">
+      {/* <ul className="flex gap-3">
         {navbarLinks.map(({ name, href }: NavbarLink) => (
           <li key={name}>
             <Link href={href}>
@@ -39,7 +39,7 @@ export default function Navbar(): JSX.Element {
             </Link>
           </li>
         ))}
-      </ul>
+      </ul> */}
     </nav>
   )
 }
