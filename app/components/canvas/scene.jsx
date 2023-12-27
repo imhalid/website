@@ -4,28 +4,33 @@ import { useControls } from "leva"
 import { useRef } from "react";
 import * as THREE from "three";
 import { Perf } from "r3f-perf";
+import { useThree } from "@react-three/fiber";
 
 export default function Scene() {
-  const ref = useRef()
+  const ref = useRef();
+  const { size } = useThree(); // Get the size of the canvas
+  const isMobile = size.width < 700; // Check if the device is mobile
+
   useFrame((state, delta) => {
-    const time = state.clock.getElapsedTime()
-    ref.current.rotation.y = Math.PI * 2 * (time / 2 * 0.2) % (Math.PI * 2)
-    ref.current.rotation.z = Math.PI * 2 * (time / 2 * 0.2) % (Math.PI * 2)
-  })
+    const time = state.clock.getElapsedTime();
+    ref.current.rotation.y = Math.PI * 2 * (time / 5 * 0.2) % (Math.PI * 2);
+    ref.current.rotation.z = Math.PI * 2 * (time / 5 * 0.2) % (Math.PI * 2);
+  });
+
   return (
-    <group position={[5, 3, 0]} rotation={[0,0,0]}>
+    <group position={isMobile ? [2, 3, 0] : [5, 3, 0]} rotation={[0, 0, 0]}>
       {/* <Perf /> */}
       <Lights />
       <mesh rotation={[1, 1, 1]} ref={ref}>
-        <boxGeometry args={[1, 1, 1,8,8,8]}  />
+        <boxGeometry args={isMobile ? [0.5, 0.5, 0.5, 2, 2, 2] : [1, 1, 1, 4, 4, 4]} />
         <meshStandardMaterial color={0xade8f4} wireframe />
         {/* <boxShaderMaterial wireframe /> */}
       </mesh>
-      {Array.from({ length: 10 }, (_, index) => (
-        <Spheres count={50 * (index / 2)} radius={2 * index} speed={3 * index} key={index} index={index} />
+      {Array.from({ length: isMobile ? 5 : 10 }, (_, index) => (
+        <Spheres count={isMobile ? 25 * (index / 2) : 50 * (index / 2)} radius={isMobile ? index : 2 * index} speed={5 * index} key={index} index={index} />
       ))}
     </group>
-  )
+  );
 }
 
 function Lights() {
@@ -40,15 +45,10 @@ function Lights() {
 
 function Spheres({ count = 50, radius = 4, centerX = 0, centerY = 0, centerZ = 0, color = new THREE.Color(), speed = 1, index, ...props }) {
   const ref = useRef()
-  const shaderMaterial = useRef()
-  // Daire merkezi
-  // Her bir örneği oluştururken dairesel bir düzende bir pozisyon atayın
   const spheresValue = Array.from({ length: count }, (_, index) => {
 
-    // Daire üzerindeki bir noktanın açısını hesaplayın
     const angle = (index / count) * 2 * Math.PI;
 
-    // Noktanın x, y ve z koordinatlarını hesaplayın
     const x = centerX + radius * Math.cos(angle);
     const y = centerY + radius * Math.sin(angle);
     const z = 0; // Z koordinatını sabitleyin
@@ -115,7 +115,7 @@ const BoxShaderMaterial = shaderMaterial(
     uWaveElevation: 0.5,
     uWaveFrequency: [0.5, 0.5],
     uWaveDirection: 1,
-    
+
   },
   `
   varying vec2 vUv;
@@ -124,8 +124,9 @@ const BoxShaderMaterial = shaderMaterial(
   uniform float time;
   uniform vec3 color;
   uniform float uWaveElevation;
-uniform vec2 uWaveFrequency;
-uniform float uWaveDirection;
+  uniform vec2 uWaveFrequency;
+  uniform float uWaveDirection;
+  
   void main() {
     vUv = uv;
     vNormal = normal;
@@ -142,8 +143,7 @@ uniform float uWaveDirection;
 
     gl_Position = projectedPosition;
   }
-  `,
-  `
+  `,`
   varying vec2 vUv;
   varying vec3 vNormal;
   varying vec3 vPosition;
@@ -179,8 +179,7 @@ const SphereShaderMaterial = shaderMaterial({
     
     gl_Position = projectionMatrix * modelViewMatrix * instanceMatrix * vec4(pos, 1.);
   }
-  `,
-  `
+  `,`
   varying vec3 vNormal;
   varying vec2 vUv;
   uniform float uTime;
