@@ -11,10 +11,10 @@ export default function CanvasComponent() {
       <Canvas camera={{ fov: 5, position: [0, 0, 120] }}>
         {/* <OrbitControls /> */}
         {/* <color attach="background" args={["black"]} /> */}
-        <EffectComposer>
+        {/* <EffectComposer>
           <ChromaticAberration offset={[0.001, 0.001]} />
           <TiltShift />
-        </EffectComposer>
+        </EffectComposer> */}
         <Scene />
       </Canvas>
       <Loader dataInterpolation={(p) => `Loading ${p.toFixed(2)}%`} />

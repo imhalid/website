@@ -21,11 +21,11 @@ export default function Scene() {
     <group position={isMobile ? [2, 3, 0] : [5, 3, 0]} rotation={[0, 0, 0]}>
       {/* <Perf /> */}
       <Lights />
-      <mesh rotation={[1, 1, 1]} ref={ref}>
-        <boxGeometry args={isMobile ? [0.5, 0.5, 0.5, 2, 2, 2] : [1, 1, 1, 4, 4, 4]} />
+      <points rotation={[1, 1, 1]} ref={ref}>
+        <boxGeometry args={isMobile ? [0.5, 0.5, 0.5, 2, 2, 2] : [1, 1, 1, 20, 20, 20]} />
         <meshStandardMaterial color={0xade8f4} wireframe />
         {/* <boxShaderMaterial wireframe /> */}
-      </mesh>
+      </points>
       {Array.from({ length: isMobile ? 5 : 10 }, (_, index) => (
         <Spheres count={isMobile ? 25 * (index / 2) : 50 * (index / 2)} radius={isMobile ? index : 2 * index} speed={5 * index} key={index} index={index} />
       ))}
