@@ -9,16 +9,8 @@ type NavbarLink = {
 const navbarLinks = [
   {
     name: 'Projects',
-    href: '/'
+    href: '/projects'
   },
-  {
-    name: 'Watches',
-    href: '/'
-  },
-  {
-    name: 'Bookmarks',
-    href: '/'
-  }
 ]
 
 
@@ -31,15 +23,15 @@ export default function Navbar(): JSX.Element {
         </Link>
         {/* <CvModal /> */}
       </div>
-      {/* <ul className="flex gap-3">
+      <ul className="flex gap-3">
         {navbarLinks.map(({ name, href }: NavbarLink) => (
           <li key={name}>
             <Link href={href}>
-              <span className="line-through touch-none text-neutral-600">{name}</span>
+              <span className="text-neutral-200 hover:text-green-400">{name}</span>
             </Link>
           </li>
         ))}
-      </ul> */}
+      </ul>
     </nav>
   )
 }

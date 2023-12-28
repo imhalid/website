@@ -19,8 +19,9 @@ export default function RootLayout({
     <html lang="en" className="bg-black text-white">
       <body className={inter.className}>
         {/* <Loading /> */}
-        <div id='pattern'></div>
-        <div id='noise'></div>
+        <div className="jumbo absolute inset-0 opacity-50"></div>
+        <div id="pattern"></div>
+        <div id="noise"></div>
         {children}
       </body>
     </html>

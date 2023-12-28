@@ -21,7 +21,7 @@ export default function Home() {
             <div className="signal"></div>
             <p className="text-base">Accepting job offers</p>
           </Link>
-          <div className="jumbo absolute inset-0 opacity-50"></div>
+          
           {/* <Dimension /> */}
           <VintageGradient />
           {/* <GlowButton /> */}
