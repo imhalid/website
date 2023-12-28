@@ -24,10 +24,9 @@ export default function Home() {
               <div key={index}>
                 <div className="">
                   <div className="relative saturate-50 hover:drop-shadow  transition-all hover:saturate-100  group ">
-                    <Image
+                    <img
                       src={project.image}
                       width={500}
-                      quality={100}
                       height={300}
                       loading="lazy"
                       className="rounded-xl transition-all  border"
