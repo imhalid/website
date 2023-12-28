@@ -25,7 +25,9 @@ export default function Home() {
           {/* <Dimension /> */}
           <VintageGradient />
           {/* <GlowButton /> */}
+          <div className="hidden md:block">
           <Clock />
+          </div>
         </div>
         {/* <Projects /> */}
       </main>
