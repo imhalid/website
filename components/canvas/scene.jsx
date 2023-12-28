@@ -21,11 +21,11 @@ export default function Scene() {
     <group position={isMobile ? [2, 3, 0] : [5, 3, 0]} rotation={[0, 0, 0]}>
       {/* <Perf /> */}
       <Lights />
-      <points rotation={[1, 1, 1]} ref={ref}>
+      <mesh rotation={[1, 1, 1]} ref={ref}>
         <boxGeometry args={isMobile ? [0.5, 0.5, 0.5, 2, 2, 2] : [1, 1, 1, 20, 20, 20]} />
-        <meshStandardMaterial color={0xade8f4} wireframe />
+        <meshStandardMaterial color={0x00b4d8} />
         {/* <boxShaderMaterial wireframe /> */}
-      </points>
+      </mesh>
       {Array.from({ length: isMobile ? 5 : 10 }, (_, index) => (
         <Spheres count={isMobile ? 25 * (index / 2) : 50 * (index / 2)} radius={isMobile ? index : 2 * index} speed={5 * index} key={index} index={index} />
       ))}
@@ -36,7 +36,7 @@ export default function Scene() {
 function Lights() {
   return (
     <>
-      <ambientLight intensity={0.5} />
+      <ambientLight intensity={1} />
       <spotLight position={[10, 10, 10]} intensity={1.5} />
       <directionalLight position={[10, 10, 10]} intensity={1.5} />
     </>
@@ -57,10 +57,10 @@ function Spheres({ count = 50, radius = 4, centerX = 0, centerY = 0, centerZ = 0
       // color: new THREE.Color(0x909090)
     };
   });
-  const rainbowColors = [0x143601, 0x1a4301, 0x245501, 0x538d22, 0x73a942, 0xaad576, 0xaad576, 0xaad576].toReversed()
+  // const rainbowColors = [0x143601, 0x1a4301, 0x245501, 0x538d22, 0x73a942, 0xaad576, 0xaad576, 0xaad576].toReversed()
   // const rainbowColors = [0x10002b, 0x240046, 0x3c096c, 0x5a189a, 0x7b2cbf, 0x9d4edd, 0xc77dff, 0xe0aaff].toReversed()
   // const rainbowColors = [0x03071e, 0x370617, 0x6a040f, 0x9d0208, 0xd00000, 0xdc2f02, 0xe85d04, 0xf48c06, 0xfaa307, 0xffba08].toReversed()
-  // const rainbowColors = [0x03045e, 0x023e8a, 0x0077b6, 0x0096c7, 0x00b4d8, 0x48cae4, 0x90e0ef, 0xade8f4].toReversed()
+  const rainbowColors = [0x03045e, 0x023e8a, 0x0077b6, 0x0096c7, 0x00b4d8, 0x48cae4, 0x90e0ef, 0xade8f4].toReversed()
   // const rainbowColors = [0xd8f3dc, 0xb7e4c7, 0x95d5b2, 0x74c69d, 0x52b788, 0x40916c, 0x2d6a4f, 0x1b4332, 0x081c15]
 
   useFrame((state, delta) => {
