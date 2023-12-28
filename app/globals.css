@@ -76,7 +76,7 @@ body {
   }
 
 #pattern {
-  position: absolute;
+  position: fixed;
   top: 0;
   left: 0;
   width: 100%;
@@ -90,7 +90,7 @@ body {
 }
 
 #noise {
-  position: absolute;
+  position: fixed;
   top: 0;
   left: 0;
   width: 100%;
@@ -167,7 +167,7 @@ body {
 
 .jumbo::after {
   content: '';
-  position: absolute;
+  position: fixed;
   inset: 0;
   background-image: var(--stripes), var(--rainbow);
   background-size: 200%, 100%;
