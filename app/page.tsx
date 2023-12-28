@@ -1,10 +1,10 @@
 
-import Navbar from "@/app/components/navbar"
+import Navbar from "@/components/navbar"
 // import Dimension from "@/app/components/dimension"
-import VintageGradient from "@/app/components/vintage-gradient"
+import VintageGradient from "@/components/vintage-gradient"
 // import GlowButton from "@/app/components/glow-button"
-import Clock from "@/app/components/clock"
-import Scene from "@/app/components/canvas/canvas"
+import Clock from "@/components/clock"
+import Scene from "@/components/canvas/canvas"
 // import Projects from "@/app/components/projects"
 import Link from "next/link"
 export default function Home() {

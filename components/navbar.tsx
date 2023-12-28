@@ -1,6 +1,6 @@
 
 import Link from "next/link"
-import CvModal from "@/app/components/cv-modal"
+import CvModal from "@/components/cv-modal"
 type NavbarLink = {
   name: string
   href: string
