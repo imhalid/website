@@ -31,6 +31,9 @@ export default function Navbar(): JSX.Element {
             </Link>
           </li>
         ))}
+        <Link href='https://drive.google.com/file/d/1r5WPQwTGTtleRavqkJueQGSz98I7xAwJ/view?usp=sharing' prefetch={true} target="_blank">
+          <span className="text-neutral-200 hover:text-green-400">CV</span>
+        </Link>
       </ul>
     </nav>
   )

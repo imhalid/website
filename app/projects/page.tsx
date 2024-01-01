@@ -24,14 +24,14 @@ export default function Home() {
               <div key={index}>
                 <div className="">
                   <div className="relative saturate-50 hover:drop-shadow  transition-all hover:saturate-100  group ">
-                    <img
+                    <Image
                       src={project.image}
                       width={500}
                       height={300}
-                      loading="lazy"
                       className="rounded-xl transition-all  border"
                       style={{ border: '1px solid #3b3b3b' }}
                       alt={project.name}
+                      priority
                     />
                     <div className="absolute flex space-x-3 opacity-0  transition-opacity group-hover:opacity-100 bottom-4 left-2">
                       <Link className="inline shadow bg-black/50 rounded-md overflow-hidden px-2 py-1" href={project.link}>
