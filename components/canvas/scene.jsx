@@ -75,7 +75,7 @@ function Spheres({ count = 50, radius = 4, centerX = 0, centerY = 0, centerZ = 0
   return (
     <Instances ref={ref} >
       <boxGeometry args={[0.1, 0.1, 0.1]} />
-      <meshStandardMaterial color={rainbowColors[index % rainbowColors.length]} />
+      <meshStandardMaterial color={rainbowColors[index % rainbowColors.length]} wireframe />
       {/* <sphereShaderMaterial ref={shaderMaterial} /> */}
       {spheresValue.map((props, index) => (
         <Sphere key={index} {...props} />
