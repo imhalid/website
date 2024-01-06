@@ -7,6 +7,7 @@ import Clock from "@/components/clock"
 import Scene from "@/components/canvas/canvas"
 // import Projects from "@/app/components/projects"
 import Link from "next/link"
+import SocialLinks from "@/components/social-links"
 export default function Home() {
   return (
     <>
@@ -30,6 +31,9 @@ export default function Home() {
           </div>
         </div>
         {/* <Projects /> */}
+        <div className="absolute bottom-10 left-14 pb-10">
+        <SocialLinks />
+        </div>
       </main>
       <div className="absolute w-full h-full top-0 left-0 pointer-events-none -z-[5]">
         <Scene />
