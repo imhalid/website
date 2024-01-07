@@ -12,7 +12,7 @@ export default function Home() {
   return (
     <>
       <main className="w-full h-screen py-14 px-0 relative">
-        <div className="max-w-xl px-14">
+        <div className="max-w-xl sm:px-14 px-5">
           <Navbar />
           <h1 className="text-4xl sm:text-5xl md:text-8xl font-bold mt-16">Hello!!</h1>
           <p className="text-base mt-5">I have a strong background in the technology sector, where I have worked for seven years, focusing on frontend development for the last two.</p>
@@ -31,7 +31,7 @@ export default function Home() {
           </div>
         </div>
         {/* <Projects /> */}
-        <div className="absolute bottom-10 left-14 pb-10">
+        <div className="absolute bottom-10 sm:left-14 left-5">
         <SocialLinks />
         </div>
       </main>

@@ -9,6 +9,15 @@ const projects = [
     tags: ['R3F', 'Next.js', 'CSS', 'API', 'TypeScript'],
   },
   {
+    id: 8.5,
+    name: 'ColorwayXpress',
+    description: 'The first website I designed and coded professionally for a company.',
+    image: 'https://github.com/imhalid/cv-builder/assets/40598819/0291e40e-7b0e-4b29-b4ca-05ca43b1cc0e',
+    link: 'https://www.colorwayxpress.com/',
+    live: 'https://www.colorwayxpress.com/',
+    tags: ['Next.js', 'TailwindCSS', 'API', 'TypeScript'],
+  },
+  {
     id: 8,
     name: 'CV Builder',
     description:
@@ -25,7 +34,7 @@ const projects = [
       'My personal website, that I created with Next.js, Tailwind Css, Content Layer',
     image: 'https://github.com/imhalid/website/assets/40598819/2dfb3dbb-bc83-437f-85df-989447336e44',
     link: 'https://github.com/imhalid/halid.dev',
-    live: '/',
+    live: 'https://halid.dev',
     tags: ['TailwindCSS', 'MDX', 'Next.js'],
   },
   {
