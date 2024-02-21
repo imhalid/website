@@ -1,11 +1,6 @@
 
 import Navbar from "@/components/navbar"
-// import Dimension from "@/app/components/dimension"
-import VintageGradient from "@/components/vintage-gradient"
-// import GlowButton from "@/app/components/glow-button"
-import Clock from "@/components/clock"
-import Scene from "@/components/canvas/canvas"
-// import Projects from "@/app/components/projects"
+import VintageGradient from "@/utils/vintage-gradient"
 import Link from "next/link"
 import SocialLinks from "@/components/social-links"
 export default function Home() {
@@ -19,25 +14,19 @@ export default function Home() {
           <p className="text-base mt-5">I am now looking for a new challenge in the field of creative development, where I can apply my skills and passion for WebGL.</p>
           
           <Link href='mailto:imhalid@icloud.com' id="accept-job" className="relative border border-neutral-800 w-fit h-full flex items-center gap-3 mt-[46px] px-3.5 py-2.5 rounded-full">
-            <div className="signal"></div>
+            <div className="signal" />
             <p className="text-base">Accepting job offers</p>
           </Link>
           
-          {/* <Dimension /> */}
           <VintageGradient />
-          {/* <GlowButton /> */}
-          <div className="hidden md:block">
-          <Clock />
-          </div>
         </div>
-        {/* <Projects /> */}
         <div className="absolute bottom-10 sm:left-14 left-5">
         <SocialLinks />
         </div>
       </main>
-      <div className="absolute w-full h-full top-0 left-0 pointer-events-none -z-[5]">
+      {/* <div className="absolute w-full h-full top-0 left-0 pointer-events-none -z-[5]">
         <Scene />
-      </div>
+      </div> */}
     </>
   )
 }

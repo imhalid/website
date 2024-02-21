@@ -1,16 +1,17 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+/* @import "./syntax.css"; */
 
 :root {
-	--backdrop: hsl(0 0% 60% / 0.12);
+  --backdrop: hsl(0 0% 60% / 0.12);
   --radius: 14;
   --border: 3;
   --backup-border: var(--backdrop);
   --size: 200;
   --base: 80;
-	--spread: 500;
-	--outer: 1;
+  --spread: 500;
+  --outer: 1;
   --border-size: calc(var(--border, 2) * 1px);
   --spotlight-size: calc(var(--size, 150) * 1px);
   --hue: calc(var(--base) + (var(--xp, 0) * var(--spread, 0)));
@@ -29,7 +30,6 @@
   text-rendering: optimizeLegibility;
   scroll-behavior: smooth;
 }
-
 
 @property --gradient-a {
   syntax: '<color>';
@@ -58,22 +58,22 @@ body {
   scrollbar-color: transparent transparent;
 }
 
- ::-webkit-scrollbar {
-    width: 1px;
-  }
+::-webkit-scrollbar {
+  width: 1px;
+}
 
-  ::-webkit-scrollbar-track {
-    background: transparent;
-  }
+::-webkit-scrollbar-track {
+  background: transparent;
+}
 
-  ::-webkit-scrollbar-thumb {
-    background-color: transparent;
-  }
+::-webkit-scrollbar-thumb {
+  background-color: transparent;
+}
 
 ::selection {
-    background: #b3ff1a;
-    color: #000;
-  }
+  background: #b3ff1a;
+  color: #000;
+}
 
 #pattern {
   position: fixed;
@@ -99,7 +99,7 @@ body {
   background-size: cover;
   background-position: top left;
   background-repeat: repeat;
-  opacity: .2;
+  opacity: 0.2;
   z-index: -10;
   background-size: 248px 248px;
 }
@@ -155,8 +155,22 @@ body {
 }
 
 .jumbo {
-  --stripes: repeating-linear-gradient(100deg, #fff 0%, #fff 7%, transparent 10%, transparent 12%, #fff 16%);
-  --rainbow: repeating-linear-gradient(100deg, #fff 10%, #948467 15%, #fff 20%, #948467 25%, #fff 30%);
+  --stripes: repeating-linear-gradient(
+    100deg,
+    #fff 0%,
+    #fff 7%,
+    transparent 10%,
+    transparent 12%,
+    #fff 16%
+  );
+  --rainbow: repeating-linear-gradient(
+    100deg,
+    #fff 10%,
+    #948467 15%,
+    #fff 20%,
+    #948467 25%,
+    #fff 30%
+  );
   background-image: var(--stripes), var(--rainbow);
   background-size: 300%, 200%;
   background-position: 50% 50%, 50% 50%;
@@ -176,16 +190,117 @@ body {
   mix-blend-mode: difference;
 }
 
+pre {
+  background-color: transparent !important;
+  @apply !px-0 rounded-lg;
+}
 
+code {
+  @apply text-sm md:text-base !leading-loose;
+}
+
+code[data-theme*=' '],
+code[data-theme*=' '] span {
+  color: var(--shiki-light);
+  background-color: var(--shiki-light-bg);
+}
+
+@media (prefers-color-scheme: dark) {
+  code[data-theme*=' '],
+  code[data-theme*=' '] span {
+    color: var(--shiki-dark);
+    background-color: var(--shiki-dark-bg);
+  }
+}
+
+code[data-line-numbers] {
+  display: grid;
+  counter-reset: line;
+  cursor: text;
+
+  > span {
+    border-left-width: 4px;
+    padding-left: 0.5rem;
+    padding-right: 0.75rem;
+    font-size: 14px;
+  }
+
+  > span::before {
+    margin-right: 0.75rem;
+    display: inline-block;
+    width: 1rem;
+    text-align: right;
+    color: rgb(255 255 255 / 0.2);
+    content: counter(line);
+    counter-increment: line;
+  }
+  > span:hover {
+    background-color: #cbdbff10;
+  }
+}
+
+figure[data-rehype-pretty-code-figure] {
+  overflow: hidden;
+  border-radius: 0.5rem;
+  background-color: #1a202c;
+  padding-bottom: 0.25rem;
+  border: 1px solid rgba(254, 202, 202, 0.03);
+  box-shadow: inset 0 0 0 1px rgba(254, 202, 202, 0.03);
+}
+
+figcaption[data-rehype-pretty-code-title] {
+  margin-bottom: 0.25rem;
+  border-radius: 0.175rem;
+  background-color: #2d3748;
+  border: 2px solid rgba(226, 232, 240, 0.03);
+  box-shadow: inset 0 0 0 2px rgba(226, 232, 240, 0.03);
+  position: relative;
+  z-index: 10;
+  padding: 0 0.5rem;
+  font-family: monospace;
+  font-size: 0.75rem;
+  color: rgba(202, 212, 254, 0.7);
+  box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
+}
+
+pre [data-line] {
+  padding: 0 0.5rem;
+  border-left-color: transparent;
+  border-left-width: 2px;
+}
+
+pre [data-highlighted-line] {
+  position: relative;
+  border-left-color: #3f81f4;
+  background-color: #cbdbff10;
+  overflow: hidden;
+}
+
+pre [data-highlighted-line]::after {
+  content: '';
+  width: 3px;
+  height: 100%;
+  background-color: #3f81f4;
+  filter: blur(3px);
+  border-radius: 0px 2px 2px 0px / 0px 50% 50% 0px;
+  /* clip-path: ellipse(6px 100% at 0% 50%); */
+  position: absolute;
+  inset: 0;
+  font-size: 0.75em;
+}
 
 /* GLOW */
 
 article {
+  width: 720px;
+}
+
+.article {
   aspect-ratio: 3 / 4;
   border-radius: calc(var(--radius) * 1px);
   width: 260px;
   position: relative;
-	grid-template-rows: 1fr auto;
+  grid-template-rows: 1fr auto;
   box-shadow: 0 1rem 2rem -1rem black;
   padding: 1rem;
   display: grid;
@@ -194,15 +309,18 @@ article {
 }
 
 [data-glow] {
-  
   background-image: radial-gradient(
-    var(--spotlight-size) var(--spotlight-size) at
-    calc(var(--x, 0) * 1px)
-    calc(var(--y, 0) * 1px),
-    hsl(var(--hue, 210) calc(var(--saturation, 100) * 1%) calc(var(--lightness, 70) * 1%) / var(--bg-spot-opacity, 0.1)), transparent
+    var(--spotlight-size) var(--spotlight-size) at calc(var(--x, 0) * 1px)
+      calc(var(--y, 0) * 1px),
+    hsl(
+      var(--hue, 210) calc(var(--saturation, 100) * 1%)
+        calc(var(--lightness, 70) * 1%) / var(--bg-spot-opacity, 0.1)
+    ),
+    transparent
   );
   background-color: var(--backdrop, transparent);
-  background-size: calc(100% + (2 * var(--border-size))) calc(100% + (2 * var(--border-size)));
+  background-size: calc(100% + (2 * var(--border-size)))
+    calc(100% + (2 * var(--border-size)));
   background-position: 50% 50%;
   background-attachment: fixed;
   border: var(--border-size) solid var(--backup-border);
@@ -212,18 +330,17 @@ article {
 [data-glow]::before,
 [data-glow]::after {
   pointer-events: none;
-  content: "";
+  content: '';
   position: absolute;
   inset: calc(var(--border-size) * -1);
   border: var(--border-size) solid transparent;
   border-radius: calc(var(--radius) * 1px);
   background-attachment: fixed;
-  background-size: calc(100% + (2 * var(--border-size))) calc(100% + (2 * var(--border-size)));
+  background-size: calc(100% + (2 * var(--border-size)))
+    calc(100% + (2 * var(--border-size)));
   background-repeat: no-repeat;
   background-position: 50% 50%;
-  mask:
-    linear-gradient(transparent, transparent),
-    linear-gradient(white, white);
+  mask: linear-gradient(transparent, transparent), linear-gradient(white, white);
   mask-clip: padding-box, border-box;
   mask-composite: intersect;
 }
@@ -232,9 +349,12 @@ article {
 [data-glow]::before {
   background-image: radial-gradient(
     calc(var(--spotlight-size) * 0.75) calc(var(--spotlight-size) * 0.75) at
-    calc(var(--x, 0) * 1px)
-    calc(var(--y, 0) * 1px),
-    hsl(var(--hue, 210) calc(var(--saturation, 100) * 1%) calc(var(--lightness, 50) * 1%) / var(--border-spot-opacity, 1)), transparent 100%
+      calc(var(--x, 0) * 1px) calc(var(--y, 0) * 1px),
+    hsl(
+      var(--hue, 210) calc(var(--saturation, 100) * 1%)
+        calc(var(--lightness, 50) * 1%) / var(--border-spot-opacity, 1)
+    ),
+    transparent 100%
   );
   filter: brightness(2);
 }
@@ -242,9 +362,9 @@ article {
 [data-glow]::after {
   background-image: radial-gradient(
     calc(var(--spotlight-size) * 0.5) calc(var(--spotlight-size) * 0.5) at
-    calc(var(--x, 0) * 1px)
-    calc(var(--y, 0) * 1px),
-    hsl(0 100% 100% / var(--border-light-opacity, 1)), transparent 100%
+      calc(var(--x, 0) * 1px) calc(var(--y, 0) * 1px),
+    hsl(0 100% 100% / var(--border-light-opacity, 1)),
+    transparent 100%
   );
 }
 [data-glow] [data-glow] {
@@ -277,4 +397,43 @@ article {
 [data-glow] :is(a, button) [data-glow]::before {
   inset: calc(var(--border-size) * -1);
   border-width: calc(var(--border-size) * 1);
+}
+
+@keyframes brightness-fade-in {
+  0% {
+    opacity: 0;
+    filter: brightness(1) blur(20px);
+    scale: 0.5;
+  }
+  10% {
+    opacity: 1;
+    filter: brightness(2) blur(2px);
+    scale: 1;
+  }
+  100% {
+    opacity: 1;
+    filter: brightness(1) blur(0);
+    scale: 1;
+  }
+}
+
+@keyframes square-in-top-right {
+  from {
+    transform: translateY(20%);
+    filter: blur(10px);
+    clip-path: polygon(50% 0, 50% 0, 50% 100%, 50% 100%);
+  }
+  to {
+    transform: translateY(0);
+    filter: blur(0);
+    clip-path: polygon(100% 0, 0 0, 0 100%, 100% 100%);
+  }
+}
+
+.fadeInBrightness {
+  animation: square-in-top-right linear forwards;
+  animation-timeline: view();
+  animation-range-start: cover 0%;
+  animation-range-end: entry 100%;
+  view-timeline-inset: 30%;
 }
