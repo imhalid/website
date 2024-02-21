@@ -9,9 +9,6 @@ export const rehypePrettyCodeOptions: Partial<Options> = {
     objKey: "meta.object-literal.key",
     grid: 'false',
     keepBackground: 'false',
-    defaultLang: {
-      block: 'plaintext',
-      inline: 'plaintext',
-    }
+    defaultLang: 'plaintext', // Fix: Change the value to a string
   },
 }
