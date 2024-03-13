@@ -35,10 +35,10 @@ export default function Home() {
                     />
                     <div className="absolute flex space-x-3 opacity-0  transition-opacity group-hover:opacity-100 bottom-4 left-2">
                       <Link className="inline shadow bg-black/50 rounded-md overflow-hidden px-2 py-1" href={project.link}>
-                        Live
+                        Link
                       </Link>
                       <Link className="inline shadow bg-black/50 rounded-md overflow-hidden px-2 py-1" href={project.live}>
-                        Link
+                        Live
                       </Link>
                     </div>
                   </div>
@@ -48,10 +48,10 @@ export default function Home() {
                     </Link>
 
                     <p className="text-white/80">{project.description}</p>
-                    <div className="flex">
+                    <div className="flex flex-wrap">
                       {project.tags.map((tag, index) => {
                         return (
-                          <p className="mr-1 my-2 px-2 py-1 rounded text-xs font-bold bg-blue-800/20 text-blue-500" key={index}>
+                          <p className="mr-1 my-1 px-2 py-0.5 rounded text-xs font-bold bg-blue-800/20 text-blue-500" key={index}>
                             {tag}
                           </p>
                         )

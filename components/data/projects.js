@@ -1,5 +1,14 @@
 const projects = [
   {
+    id: 11,
+    name: "Github Card Generator",
+    description: "A simple github card generator with React.js",
+    image: "https://github.com/imhalid/pixel-profile-generator/assets/40598819/16172ed8-c301-416d-9f1e-55a72187b047",
+    link: "https://github.com/imhalid/pixel-profile-generator",
+    live: "https://pixel-profile-generator.vercel.app/",
+    tags: ["React.js", "CSS", "API", "TypeScript", "Redux Toolkit"],
+  },
+  {
     id: 10,
     name: "TRT Assignment",
     description: "The figma to html task I did for TRT World",

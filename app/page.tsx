@@ -15,7 +15,7 @@ export default function Home() {
           
           <Link href='mailto:imhalid@icloud.com' id="accept-job" className="relative border border-neutral-800 w-fit h-full flex items-center gap-3 mt-[46px] px-3.5 py-2.5 rounded-full">
             <div className="signal" />
-            <p className="text-base">Accepting job offers</p>
+            <p className="text-base">Contact</p>
           </Link>
           
           <VintageGradient />

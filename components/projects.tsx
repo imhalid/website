@@ -8,7 +8,6 @@ const parisienne = Parisienne({ subsets: ["latin"], weight: ["400"] })
 
 
 export default function Projects() {
-console.log(parisienne)
   return (
     <div className="mt-52 flex flex-wrap gap-3 w-full justify-center">
       {/* HKARIX */}
