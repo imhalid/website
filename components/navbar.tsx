@@ -10,10 +10,6 @@ const navbarLinks = [
     name: "Projects",
     href: "/projects",
   },
-  // {
-  //  name: 'Blog',
-  //  href: '/blog'
-  // }
 ];
 
 export default function Navbar(): JSX.Element {
