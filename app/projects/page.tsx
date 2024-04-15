@@ -3,11 +3,12 @@ import ProjectsData from "@/components/data/projects"
 import Link from "next/link"
 import Image from "next/image"
 
-type Project = {
+export type Project = {
   id: number
   name: string
   description: string
   image: string
+  side: string
   link: string
   live: string
   tags: string[]

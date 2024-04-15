@@ -1,4 +1,5 @@
-import Link from "next/link";
+// import Link from "next/link";
+import {Link } from 'next-view-transitions'
 type NavbarLink = {
   name: string;
   href: string;

@@ -3,6 +3,9 @@ import Navbar from "@/components/navbar"
 import VintageGradient from "@/utils/vintage-gradient"
 import Link from "next/link"
 import SocialLinks from "@/components/social-links"
+import ProjectsData from "@/components/data/projects"
+import { Project } from "./projects/page"
+import Image from "next/image"
 export default function Home() {
   return (
     <>
@@ -12,16 +15,30 @@ export default function Home() {
           <h1 className="text-4xl sm:text-5xl md:text-8xl font-bold mt-16">Hello!!</h1>
           <p className="text-base mt-5">I have a strong background in the technology sector, where I have worked for seven years, focusing on frontend development for the last two.</p>
           <p className="text-base mt-5">I am now looking for a new challenge in the field of creative development, where I can apply my skills and passion for WebGL.</p>
-          
+
           <Link href='mailto:imhalid@icloud.com' id="accept-job" className="relative border border-neutral-800 w-fit h-full flex items-center gap-3 mt-[46px] px-3.5 py-2.5 rounded-full">
             <div className="signal" />
             <p className="text-base">Contact</p>
           </Link>
-          
+
           <VintageGradient />
+          <div className="mt-10 relative projectsSection divide-y border-b border-neutral-700">
+            <p className="text-xl font-medium mb-5">Projects</p>
+            {
+              ProjectsData.map((project: Project, index) => {
+                return (
+                  <div key={index} className="flex projectName justify-between items-center hover:bg-white hover:text-black border-neutral-700">
+                      <p className="py-2 ">{project.name}</p>
+                      <Image className="projectImage absolute left-full top-12" data-side={project.side} src={project.image} width={500} height={300} alt={project.name} />
+                      <p className="text-xs text-right ">{project.description}</p>
+                    </div>
+                )
+              })
+            }
+          </div>
         </div>
-        <div className="absolute bottom-10 sm:left-14 left-5">
-        <SocialLinks />
+        <div className="absolute bottom-10 sm:right-14 right-5">
+          <SocialLinks />
         </div>
       </main>
       {/* <div className="absolute w-full h-full top-0 left-0 pointer-events-none -z-[5]">
