@@ -17,13 +17,13 @@
   --hue: calc(var(--base) + (var(--xp, 0) * var(--spread, 0)));
 
 
-  --side-left-initial: polygon(0 0, 0 100%, 0 100%, 0 0);
+  --side-left-initial: polygon(0 0, 0 0, 0 0, 0 0);
   --side-left-hover: polygon(100% 0, 100% 100%, 0 100%, 0 0);
-  --side-right-initial: polygon(100% 0, 100% 0, 100% 100%, 100% 100%);
+  --side-right-initial: polygon(0 0, 0 0, 0 0, 0 0);
   --side-right-hover: polygon(0 0, 100% 0, 100% 100%, 0 100%);
-  --side-top-initial: polygon(0 0, 100% 0, 100% 0%, 0 0%);
+  --side-top-initial: polygon(0 0, 0 0, 0 0, 0 0);
   --side-top-hover: polygon(0 0, 100% 0, 100% 100%, 0 100%);
-  --side-bottom-initial: polygon(0 100%, 100% 100%, 100% 100%, 0% 100%);
+  --side-bottom-initial: polygon(0 0, 0 0, 0 0, 0 0);
   --side-bottom-hover: polygon(0 0, 100% 0, 100% 100%, 0% 100%);
 }
 
