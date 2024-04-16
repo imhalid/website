@@ -17,13 +17,13 @@
   --hue: calc(var(--base) + (var(--xp, 0) * var(--spread, 0)));
 
 
-  --side-left-initial: polygon(0 0, 0 0, 0 0, 0 0);
-  --side-left-hover: polygon(100% 0, 100% 100%, 0 100%, 0 0);
-  --side-right-initial: polygon(0 0, 0 0, 0 0, 0 0);
+  --side-left-initial: polygon(0 0, 0 0, 0 100%, 0% 100%);
+  --side-left-hover: polygon(0 0, 100% 0, 100% 100%, 0% 100%);
+  --side-right-initial: polygon(0 0, 0 0, 0 100%, 0% 100%);
   --side-right-hover: polygon(0 0, 100% 0, 100% 100%, 0 100%);
-  --side-top-initial: polygon(0 0, 0 0, 0 0, 0 0);
+  --side-top-initial: polygon(0 0, 0 0, 0 100%, 0% 100%);
   --side-top-hover: polygon(0 0, 100% 0, 100% 100%, 0 100%);
-  --side-bottom-initial: polygon(0 0, 0 0, 0 0, 0 0);
+  --side-bottom-initial: polygon(0 0, 0 0, 0 100%, 0% 100%);
   --side-bottom-hover: polygon(0 0, 100% 0, 100% 100%, 0% 100%);
 }
 
@@ -412,18 +412,15 @@ article {
 @keyframes brightness-fade-in {
   0% {
     opacity: 0;
-    filter: brightness(1) blur(20px);
-    scale: 0.5;
+    filter: brightness(1) blur(20px) contrast(1)
   }
   10% {
     opacity: 1;
-    filter: brightness(2) blur(2px);
-    scale: 1;
+    filter: brightness(3) blur(5px) contrast(3)
   }
   100% {
     opacity: 1;
-    filter: brightness(1) blur(0);
-    scale: 1;
+    filter: brightness(1) blur(0) contrast(1)
   }
 }
 
@@ -451,8 +448,9 @@ article {
 .projectImage {
   transition: clip-path 0.2s;
   border-radius: 10px;
+  clip-path: var(--side-left-initial);
 
-  &[data-side='left'] {
+  /* &[data-side='left'] {
     clip-path: var(--side-left-initial);
   }
 
@@ -466,23 +464,11 @@ article {
 
   &[data-side='bottom'] {
     clip-path: var(--side-bottom-initial);
-  }
+  } */
 }
 
-.projectName:hover  .projectImage[data-side='left'] {
+.projectName:hover  .projectImage {
   clip-path: var(--side-left-hover);
-}
-
-.projectName:hover .projectImage[data-side='right'] {
-  clip-path: var(--side-right-hover);
-}
-
-.projectName:hover .projectImage[data-side='top'] {
-  clip-path: var(--side-top-hover);
-}
-
-.projectName:hover .projectImage[data-side='bottom'] {
-  clip-path: var(--side-bottom-hover);
 }
 
 .projectName:hover .projectImage {
