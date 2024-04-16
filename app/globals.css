@@ -450,6 +450,7 @@ article {
 
 .projectImage {
   transition: clip-path 0.2s;
+  border-radius: 10px;
 
   &[data-side='left'] {
     clip-path: var(--side-left-initial);
@@ -482,4 +483,8 @@ article {
 
 .projectName:hover .projectImage[data-side='bottom'] {
   clip-path: var(--side-bottom-hover);
+}
+
+.projectName:hover .projectImage {
+  animation: brightness-fade-in 0.5s;
 }

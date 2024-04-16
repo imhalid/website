@@ -15,6 +15,7 @@
     "@react-three/fiber": "^8.16.2",
     "@react-three/postprocessing": "^2.16.2",
     "@types/three": "^0.163.0",
+    "@uidotdev/usehooks": "^2.4.1",
     "gray-matter": "^4.0.3",
     "gsap": "^3.12.5",
     "leva": "^0.9.35",

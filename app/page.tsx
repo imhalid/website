@@ -1,11 +1,8 @@
-
 import Navbar from "@/components/navbar"
 import VintageGradient from "@/utils/vintage-gradient"
 import Link from "next/link"
 import SocialLinks from "@/components/social-links"
-import ProjectsData from "@/components/data/projects"
-import { Project } from "./projects/page"
-import Image from "next/image"
+import MainProjects from "@/components/main-projects"
 export default function Home() {
   return (
     <>
@@ -22,20 +19,7 @@ export default function Home() {
           </Link>
 
           <VintageGradient />
-          <div className="mt-10 relative projectsSection divide-y border-b border-neutral-700">
-            <p className="text-xl font-medium mb-5">Projects</p>
-            {
-              ProjectsData.map((project: Project, index) => {
-                return (
-                  <div key={index} className="flex projectName justify-between items-center hover:bg-white hover:text-black border-neutral-700">
-                      <p className="py-2 ">{project.name}</p>
-                      <Image className="projectImage absolute left-full top-12" data-side={project.side} src={project.image} width={500} height={300} alt={project.name} />
-                      <p className="text-xs text-right ">{project.description}</p>
-                    </div>
-                )
-              })
-            }
-          </div>
+          <MainProjects />
         </div>
         <div className="absolute bottom-10 sm:right-14 right-5">
           <SocialLinks />
