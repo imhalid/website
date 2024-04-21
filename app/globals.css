@@ -17,14 +17,8 @@
   --hue: calc(var(--base) + (var(--xp, 0) * var(--spread, 0)));
 
 
-  --side-left-initial: polygon(0 0, 0 0, 0 100%, 0% 100%);
-  --side-left-hover: polygon(0 0, 100% 0, 100% 100%, 0% 100%);
-  --side-right-initial: polygon(0 0, 0 0, 0 100%, 0% 100%);
-  --side-right-hover: polygon(0 0, 100% 0, 100% 100%, 0 100%);
-  --side-top-initial: polygon(0 0, 0 0, 0 100%, 0% 100%);
-  --side-top-hover: polygon(0 0, 100% 0, 100% 100%, 0 100%);
-  --side-bottom-initial: polygon(0 0, 0 0, 0 100%, 0% 100%);
-  --side-bottom-hover: polygon(0 0, 100% 0, 100% 100%, 0% 100%);
+  --side-initial: polygon(50% 0, 50% 0, 50% 100%, 50% 100%);
+  --side-hover: polygon(0 0, 100% 0, 100% 100%, 0 100%);
 }
 
 ::webkit-scrollbar {
@@ -448,27 +442,11 @@ article {
 .projectImage {
   transition: clip-path 0.2s;
   border-radius: 10px;
-  clip-path: var(--side-left-initial);
-
-  /* &[data-side='left'] {
-    clip-path: var(--side-left-initial);
-  }
-
-  &[data-side='right'] {
-    clip-path: var(--side-right-initial);
-  }
-
-  &[data-side='top'] {
-    clip-path: var(--side-top-initial);
-  }
-
-  &[data-side='bottom'] {
-    clip-path: var(--side-bottom-initial);
-  } */
+  clip-path: var(--side-initial);
 }
 
 .projectName:hover  .projectImage {
-  clip-path: var(--side-left-hover);
+  clip-path: var(--side-hover);
 }
 
 .projectName:hover .projectImage {

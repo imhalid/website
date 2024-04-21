@@ -3,12 +3,15 @@ import VintageGradient from "@/utils/vintage-gradient"
 import Link from "next/link"
 import SocialLinks from "@/components/social-links"
 import MainProjects from "@/components/main-projects"
+import GetRepo  from "@/components/github"
 export default function Home() {
+  
   return (
     <>
       <main className="w-full h-screen py-14 px-0 relative">
         <div className="max-w-xl sm:px-14 px-5">
           <Navbar />
+          <GetRepo />
           <h1 className="text-4xl sm:text-5xl md:text-8xl font-bold mt-16">Hello!!</h1>
           <p className="text-base mt-5">I have a strong background in the technology sector, where I have worked for seven years, focusing on frontend development for the last two.</p>
           <p className="text-base mt-5">I am now looking for a new challenge in the field of creative development, where I can apply my skills and passion for WebGL.</p>
