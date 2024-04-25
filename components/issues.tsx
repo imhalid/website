@@ -65,45 +65,29 @@ export default async function GetRepo() {
     },
   });
   const { user }: { user: Welcome } = await graphqlWithAuth(`{
-   user(login: "imhalid") {
-    pullRequests(last: 20, orderBy: {field: CREATED_AT, direction: DESC}) {
-      nodes{
+  user(login: "imhalid") {
+    issues(last: 10, orderBy: {field: CREATED_AT, direction: DESC}){
+      nodes {
         title
-        url
         closed
-        merged
-        baseRepository {
-          name
-          owner {
-            login
-            avatarUrl
-          }
+        url
+        author{
+          avatarUrl
         }
-        createdAt
-        closedAt
-        commits(first: 20) {
-          nodes {
-            commit {
-              statusCheckRollup{
-                state
-              }
-              url
-              message
-              author{
-                avatarUrl
-              }
-            }
+        repository {
+          name
+          homepageUrl
           }
         }
       }
     }
   }
-}
   `)
   return (
     <div>
       <h2>Pull Requests</h2>
-      <PrTable user={user.pullRequests ?? {}} />
+      {/* <PrTable user={user.pullRequests ?? {}} /> */}
     </div>
   );
 }
+
