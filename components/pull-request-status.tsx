@@ -3,11 +3,11 @@ export default function PullRequestStatus({ node }: { node: boolean }) {
     switch (status) {
       case true:
         return (
-          <div className='bg-green-500 w-1 h-3 rounded-md shadow-pr-true' />
+          <div className='bg-[#60319c] w-1 h-3 rounded-md shadow-pr-merge' />
         )
       case false:
         return (
-          <div className='bg-red-500 w-1 h-3 rounded-md shadow-pr-false' />
+          <div className='bg-red-500 w-1 h-3 rounded-md shadow-pr-reject' />
         )
       default:
         return (

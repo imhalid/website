@@ -14,7 +14,7 @@ export default async function GetRepo() {
   });
   const { user : { pullRequests } }: { user: User } = await graphqlWithAuth(`{
   user(login: "imhalid") {
-    pullRequests(last: 20, orderBy: {field: CREATED_AT, direction: DESC}) {
+    pullRequests(last: 50, orderBy: {field: CREATED_AT, direction: DESC}) {
       totalCount
       edges {
         node {
@@ -28,7 +28,7 @@ export default async function GetRepo() {
           createdAt
           closedAt
           url
-          commits(last: 20) {
+          commits(last: 50) {
             edges {
               node {
                 commit {
@@ -49,10 +49,8 @@ export default async function GetRepo() {
   }
 }
   `)
-  console.log(pullRequests)
   return (
     <div>
-      <h2>Pull Requests</h2>
       <PrTable data={pullRequests} />
     </div>
   );
