@@ -1,60 +1,8 @@
 const { GH_TOKEN } = process.env;
 import { graphql } from "@octokit/graphql";
-import PrTable from "./pr-table";
+import PrTable from "./pull-request";
+import { User } from "@/types/pull-request";
 
-export interface Welcome {
-  pullRequests?: PullRequests;
-  issues?: Issues;
-}
-
-export interface Issues {
-  nodes?: IssuesNode[];
-}
-
-export interface IssuesNode {
-  title?: string;
-  closed?: boolean;
-  url?: string;
-  author?: Author;
-  repository?: Repository;
-}
-
-export interface Author {
-  avatarUrl?: string;
-}
-
-export interface Repository {
-  name?: string;
-  homepageUrl?: string;
-}
-
-export interface PullRequests {
-  nodes?: PullRequestsNode[];
-}
-
-export interface PullRequestsNode {
-  title?: string;
-  url?: string;
-  closed?: boolean;
-  createdAt?: Date;
-  closedAt?: Date;
-  commits?: Commits;
-}
-
-export interface Commits {
-  nodes?: CommitsNode[];
-}
-
-export interface CommitsNode {
-  commit?: Commit;
-}
-
-export interface Commit {
-  statusCheckRollup?: null;
-  url?: string;
-  message?: string;
-  author?: Author;
-}
 
 
 export default async function GetRepo() {
@@ -64,35 +12,36 @@ export default async function GetRepo() {
       authorization: `token ${GH_TOKEN}`,
     },
   });
-  const { user }: { user: Welcome } = await graphqlWithAuth(`{
-   user(login: "imhalid") {
+  const { user : { pullRequests } }: { user: User } = await graphqlWithAuth(`{
+  user(login: "imhalid") {
     pullRequests(last: 20, orderBy: {field: CREATED_AT, direction: DESC}) {
-      nodes{
-        title
-        url
-        closed
-        merged
-        baseRepository {
-          name
-          owner {
-            login
-            avatarUrl
-          }
-        }
-        createdAt
-        closedAt
-        commits(first: 20) {
-          nodes {
-            commit {
-              statusCheckRollup{
-                state
-              }
-              url
-              message
-              author{
-                avatarUrl
+      totalCount
+      edges {
+        node {
+          number
+          title
+          state
+          closed
+          merged
+          additions
+          deletions
+          createdAt
+          closedAt
+          url
+          commits(last: 20) {
+            edges {
+              node {
+                commit {
+                  message
+                  url
+                  committedDate
+                }
               }
             }
+          }
+          repository {
+            url
+            name
           }
         }
       }
@@ -100,10 +49,11 @@ export default async function GetRepo() {
   }
 }
   `)
+  console.log(pullRequests)
   return (
     <div>
       <h2>Pull Requests</h2>
-      <PrTable user={user.pullRequests ?? {}} />
+      <PrTable data={pullRequests} />
     </div>
   );
 }

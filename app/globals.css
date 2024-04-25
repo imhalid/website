@@ -16,7 +16,6 @@
   --spotlight-size: calc(var(--size, 150) * 1px);
   --hue: calc(var(--base) + (var(--xp, 0) * var(--spread, 0)));
 
-
   --side-initial: polygon(50% 0, 50% 0, 50% 100%, 50% 100%);
   --side-hover: polygon(0 0, 100% 0, 100% 100%, 0 100%);
 }
@@ -451,4 +450,29 @@ article {
 
 .projectName:hover .projectImage {
   animation: brightness-fade-in 0.5s;
+}
+
+.shadow-inner-dark {
+  box-shadow: 0px 1px 0px 0px hsla(0,0%,100%,.03) inset,0px 0px 0px 1px hsla(0,0%,100%,.03) inset,0px 0px 0px 1px rgba(0,0,0,.06),0px 2px 2px 0px rgba(0,0,0,.06),0px 4px 4px 0px rgba(0,0,0,.06),0px 8px 8px 0px rgba(0,0,0,.06);
+}
+
+.pr-title-bg {
+  --line-one: hsl(0, 0%, 7%);
+  --line-two:hsl(0, 0%, 8%);
+  background: repeating-linear-gradient(
+    300deg, 
+    var(--line-one), 
+    var(--line-one) 10px, 
+    var(--line-two) 10px, 
+    var(--line-two) 15px);
+}
+
+.shadow-pr-true {
+  box-shadow: 0px 0px 3px 1px hsla(135, 91%, 47%, 0.3), 
+              1px 0px 1px 1px hsla(135, 74%, 21%, 0.8) inset;
+}
+
+.shadow-pr-false {
+  box-shadow: 0px 0px 3px 1px hsla(0, 91%, 47%, 0.3), 
+              1px 0px 1px 1px hsla(0, 74%, 21%, 0.8) inset;
 }

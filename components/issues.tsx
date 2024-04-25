@@ -1,6 +1,6 @@
 const { GH_TOKEN } = process.env;
 import { graphql } from "@octokit/graphql";
-import PrTable from "./pr-table";
+import PrTable from "./pull-request";
 
 export interface Welcome {
   pullRequests?: PullRequests;
