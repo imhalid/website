@@ -50,7 +50,7 @@ export default async function GetRepo() {
 }
   `)
   return (
-    <div>
+    <div className="relative ">
       <PrTable data={pullRequests} />
     </div>
   );

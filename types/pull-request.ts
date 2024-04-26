@@ -49,6 +49,7 @@ export interface Node2 {
 export interface Commit {
   message: string
   url: string
+  committedDate: string
 }
 
 export interface Repository {

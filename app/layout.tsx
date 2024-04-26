@@ -21,9 +21,9 @@ export default function RootLayout({
       <html lang="en" className="bg-black text-white">
         <body className={inter.className}>
           {/* <Loading /> */}
-          <div className="jumbo fixed inset-0 opacity-50" />
-          <div id="pattern" />
-          <div id="noise" />
+          <div className="jumbo fixed inset-0 opacity-50 z-10 touch-none pointer-events-none" />
+          <div id="pattern" className='pointer-events-none' />
+          <div id="noise" className='pointer-events-none' />
           {children}
         </body>
       </html>

@@ -23,6 +23,7 @@ export default function Home() {
 
           <VintageGradient />
           <MainProjects />
+
         </div>
         <div className="absolute bottom-10 sm:right-14 right-5">
           <SocialLinks />
