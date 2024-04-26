@@ -52,9 +52,14 @@ export default function PullRequestTable({ node }: { node: Node }) {
         {isOpen && (
           <motion.div
             key={node.commits.edges[0].node.commit.message}
-            initial={{ opacity: 0, y: -10 }}
-            animate={{ opacity: 1, y: 0 }}
-            exit={{ opacity: 0, y: -10 }}
+            initial="collapsed"
+            animate="open"
+            exit="collapsed"
+            variants={{
+              open: { opacity: 1, height: "auto" },
+              collapsed: { opacity: 0, height: 0 }
+            }}
+            transition={{ duration: 0.8, ease: [0.04, 0.62, 0.23, 0.98] }}
             className='w-full h-auto bg-lime-500'>
             <p className='text-sm text-neutral-500'>{node.commits.edges[0].node.commit.message}</p>
           </motion.div>
