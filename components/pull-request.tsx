@@ -12,9 +12,8 @@ export default function PrTable({ data }: { data: PullRequests }) {
         </div>
       </div>
       <div className="max-h-96 overflow-auto custom-scroll-bar">
-
       {data.edges.sort().map((pr: Edge) => (
-        <PullRequestTable key={pr.node.number} node={pr.node} />
+        <PullRequestTable key={pr.node.title} node={pr.node} />
       ))}
       </div>
     </div>
