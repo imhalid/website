@@ -1,5 +1,4 @@
-'use client'
-import { motion, animate, motionValue, useAnimate } from "framer-motion"
+import { motion, useAnimate } from "framer-motion"
 import { useEffect } from "react"
 export default function ArrowSvg({ clicked }: { clicked: boolean }) {
 
@@ -24,7 +23,6 @@ export default function ArrowSvg({ clicked }: { clicked: boolean }) {
             closed: { d: "M1 1L3.19995 3.93333C3.59995 4.46666 4.39995 4.46667 4.79995 3.93334L7 1" },
             open: { d: "M1 1L3.19995 3.93333C3.59995 4.46666 4.39995 4.46667 4.79995 3.93334L7 1" }
           }}
-          
           stroke="white"
           strokeLinecap="round"
         />

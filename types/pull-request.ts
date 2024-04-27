@@ -20,7 +20,7 @@ export interface Edge {
 }
 
 export interface Node {
-  number: number
+  id: string
   title?: string
   state: string
   closed: boolean
@@ -47,6 +47,7 @@ export interface Node2 {
 }
 
 export interface Commit {
+  id: string
   message: string
   url: string
   committedDate: string

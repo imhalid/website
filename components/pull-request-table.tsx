@@ -1,4 +1,3 @@
-'use client'
 import { Node } from '@/types/pull-request'
 import Seperator from './seperator'
 import { motion, AnimatePresence } from 'framer-motion'
@@ -6,10 +5,11 @@ import PullRequestStatus from './pull-request-status'
 import { ShieldCheck } from 'lucide-react'
 import { formatDistanceToNow } from 'date-fns'
 import ArrowSvg from './arrow-svg'
-import { useState } from 'react'
-export default function PullRequestTable({ node }: { node: Node }) {
-  const [isOpen, setIsOpen] = useState(false)
+import PullRequestCommits from './pull-request-commits'
 
+export default function PullRequestTable({ node, isOpen, setIsOpen }: { node: Node; isOpen: string; setIsOpen: React.Dispatch<React.SetStateAction<string>> }) {
+
+const expanded = node.id === isOpen
   const generateRepoName = (url: string) => {
     const splitUrl = url.split('/')
     return `${splitUrl[3]}/${splitUrl[4]}`
@@ -25,14 +25,14 @@ export default function PullRequestTable({ node }: { node: Node }) {
       <motion.button
         layout
         initial={false}
-        key={node.title}
-        animate={{ backgroundColor: isOpen ? '#1a1a1a' : '#0d0d0d' }}
-        onClick={() => setIsOpen(!isOpen)}
+        key={node.id}
+        animate={{ backgroundColor: expanded ? '#1a1a1a' : '#0d0d0d' }}
+        onClick={() => setIsOpen(expanded ? '' : node.id)}
         className='bg-[#0d0d0d] relative w-full transition-all'>
         <div className='h-16 flex items-center justify-between px-7'>
           <div className='flex flex-col w-full'>
             <div className='flex items-center'>
-              <ArrowSvg key={node.title} clicked={isOpen} />
+              <ArrowSvg key={node.id} clicked={expanded} />
               <p className='font-mono text-sm w-fit whitespace-nowrap'>{node.title}</p>
               <div className='w-full border-b border-dashed border-neutral-700 mx-3'></div>
               <p className='text-xs text-neutral-500 whitespace-nowrap'>{formatDate(node.closedAt ?? '')}</p>
@@ -49,9 +49,9 @@ export default function PullRequestTable({ node }: { node: Node }) {
         <Seperator />
       </motion.button>
       <AnimatePresence initial={false}>
-        {isOpen && (
+        {expanded && (
           <motion.div
-            key={node.commits.edges[0].node.commit.message}
+            key={node.id}
             initial="collapsed"
             animate="open"
             exit="collapsed"
@@ -60,8 +60,8 @@ export default function PullRequestTable({ node }: { node: Node }) {
               collapsed: { opacity: 0, height: 0 }
             }}
             transition={{ duration: 0.8, ease: [0.04, 0.62, 0.23, 0.98] }}
-            className='w-full h-auto bg-lime-500'>
-            <p className='text-sm text-neutral-500'>{node.commits.edges[0].node.commit.message}</p>
+            className='w-full h-auto bg-neutral-800'>
+            <PullRequestCommits commits={node.commits} />
           </motion.div>
         )}
       </AnimatePresence>

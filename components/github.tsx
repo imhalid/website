@@ -18,7 +18,7 @@ export default async function GetRepo() {
       totalCount
       edges {
         node {
-          number
+          id
           title
           state
           closed
@@ -32,6 +32,7 @@ export default async function GetRepo() {
             edges {
               node {
                 commit {
+                  id
                   message
                   url
                   committedDate
