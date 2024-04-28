@@ -6,6 +6,7 @@ import { ShieldCheck } from 'lucide-react'
 import { formatDistanceToNow } from 'date-fns'
 import ArrowSvg from './arrow-svg'
 import PullRequestCommits from './pull-request-commits'
+import LineDash from './line-dash'
 
 export default function PullRequestTable({ node, isOpen, setIsOpen }: { node: Node; isOpen: string; setIsOpen: React.Dispatch<React.SetStateAction<string>> }) {
 
@@ -26,7 +27,7 @@ const expanded = node.id === isOpen
         layout
         initial={false}
         key={node.id}
-        animate={{ backgroundColor: expanded ? '#1a1a1a' : '#0d0d0d' }}
+        animate={{ backgroundColor: expanded ? '#111111' : '#0d0d0d' }}
         onClick={() => setIsOpen(expanded ? '' : node.id)}
         className='bg-[#0d0d0d] relative w-full transition-all'>
         <div className='h-16 flex items-center justify-between px-7'>
@@ -34,11 +35,11 @@ const expanded = node.id === isOpen
             <div className='flex items-center'>
               <ArrowSvg key={node.id} clicked={expanded} />
               <p className='font-mono text-sm w-fit whitespace-nowrap'>{node.title}</p>
-              <div className='w-full border-b border-dashed border-neutral-700 mx-3'></div>
+             <LineDash />
               <p className='text-xs text-neutral-500 whitespace-nowrap'>{formatDate(node.closedAt ?? '')}</p>
             </div>
             <p className='text-xs text-neutral-500 flex items-center gap-1'>
-              <i>
+              <i className='shield-shadow'>
                 <ShieldCheck size={14} color='#B0DA38' />
               </i>
               {generateRepoName(node.url)}</p>
@@ -60,7 +61,7 @@ const expanded = node.id === isOpen
               collapsed: { opacity: 0, height: 0 }
             }}
             transition={{ duration: 0.8, ease: [0.04, 0.62, 0.23, 0.98] }}
-            className='w-full h-auto bg-neutral-800'>
+            className='w-full h-auto bg-neutral-900'>
             <PullRequestCommits commits={node.commits} />
           </motion.div>
         )}
