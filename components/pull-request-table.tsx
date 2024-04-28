@@ -33,8 +33,8 @@ const expanded = node.id === isOpen
         <div className='h-16 flex items-center justify-between px-7'>
           <div className='flex flex-col w-full'>
             <div className='flex items-center'>
-              <ArrowSvg key={node.id} clicked={expanded} />
-              <p className='font-mono text-sm w-fit whitespace-nowrap'>{node.title}</p>
+              {node.commits.edges.length > 0 && <ArrowSvg key={node.id} clicked={expanded} />}
+              <p className='font-mono text-sm w-fit pl-1 whitespace-nowrap'>{node.title}</p>
              <LineDash />
               <p className='text-xs text-neutral-500 whitespace-nowrap'>{formatDate(node.closedAt ?? '')}</p>
             </div>

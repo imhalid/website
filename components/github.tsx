@@ -4,7 +4,6 @@ import PrTable from "./pull-request";
 import { User } from "@/types/pull-request";
 
 
-
 export default async function GetRepo() {
 
   const graphqlWithAuth = graphql.defaults({
@@ -51,7 +50,7 @@ export default async function GetRepo() {
 }
   `)
   return (
-    <div className="relative ">
+    <div className="absolute right-[10%]">
       <PrTable data={pullRequests} />
     </div>
   );

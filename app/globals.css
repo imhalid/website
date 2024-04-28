@@ -487,7 +487,7 @@ article {
 }
 
 .pr-title-bg {
-  --line-one: hsl(0, 0%, 7%);
+  --line-one: hsl(0, 0%, 10%);
   --line-two:hsl(0, 0%, 8%);
   background: repeating-linear-gradient(
     300deg, 
