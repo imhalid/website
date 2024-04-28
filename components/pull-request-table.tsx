@@ -30,7 +30,7 @@ const expanded = node.id === isOpen
         animate={{ backgroundColor: expanded ? '#111111' : '#0d0d0d' }}
         onClick={() => setIsOpen(expanded ? '' : node.id)}
         className='bg-[#0d0d0d] relative w-full transition-all'>
-        <div className='h-16 flex items-center justify-between px-7'>
+        <div className='h-16 flex items-center justify-between pl-7 pr-3 '>
           <div className='flex flex-col w-full'>
             <div className='flex items-center'>
               {node.commits.edges.length > 0 && <ArrowSvg key={node.id} clicked={expanded} />}
