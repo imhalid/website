@@ -10,7 +10,8 @@ import LineDash from './line-dash'
 
 export default function PullRequestTable({ node, isOpen, setIsOpen }: { node: Node; isOpen: string; setIsOpen: React.Dispatch<React.SetStateAction<string>> }) {
 
-const expanded = node.id === isOpen
+  const expanded = node.id === isOpen
+  console.log(expanded)
   const generateRepoName = (url: string) => {
     const splitUrl = url.split('/')
     return `${splitUrl[3]}/${splitUrl[4]}`
@@ -35,7 +36,7 @@ const expanded = node.id === isOpen
             <div className='flex items-center'>
               {node.commits.edges.length > 0 && <ArrowSvg key={node.id} clicked={expanded} />}
               <p className='font-mono text-sm w-fit pl-1 whitespace-nowrap'>{node.title}</p>
-             <LineDash />
+              <LineDash />
               <p className='text-xs text-neutral-500 whitespace-nowrap'>{formatDate(node.closedAt ?? '')}</p>
             </div>
             <p className='text-xs text-neutral-500 flex items-center gap-1'>
