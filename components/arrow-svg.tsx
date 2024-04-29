@@ -7,7 +7,7 @@ export default function ArrowSvg({ clicked }: { clicked: boolean }) {
   useEffect(() => {
     animate([["path", {
       d: clicked ?
-        'M1 1L3.19995 1C3.59995 1 4.39995 1 4.79995 1L7 1' : 'M1 1L3.19995 3.93333C3.59995 4.46666 4.39995 4.46667 4.79995 3.93334L7 1'
+        'M 1 2.5 L 3 2.5 C 4 2.5 4 2.5 5 2.5 L 7 2.5' : 'M1 1L3.19995 3.93333C3.59995 4.46666 4.39995 4.46667 4.79995 3.93334L7 1'
     }]])
   }, [clicked])
   return (
