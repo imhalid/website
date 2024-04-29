@@ -5,11 +5,11 @@ import SocialLinks from "@/components/social-links"
 import MainProjects from "@/components/main-projects"
 import GetRepo  from "@/components/github"
 export default function Home() {
-  
+
   return (
     <>
       <main className="w-full h-screen py-14 px-0 relative">
-        <div className="max-w-xl sm:px-14 px-5">
+        <div className="max-w-xl sm:px-14 px-5 relative">
           <Navbar />
           <GetRepo />
           <h1 className="text-4xl sm:text-5xl md:text-8xl font-bold mt-16">Hello!!</h1>
@@ -22,7 +22,9 @@ export default function Home() {
           </Link>
 
           <VintageGradient />
-          <MainProjects />
+          <div className="hidden md:inline">
+            <MainProjects />
+            </div>
 
         </div>
         <div className="absolute bottom-10 sm:right-14 right-5">

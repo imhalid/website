@@ -50,7 +50,7 @@ export default async function GetRepo() {
 }
   `)
   return (
-    <div className="absolute right-[10%]">
+    <div className="absolute top-0 left-full z-10 hidden md:inline">
       <PrTable data={pullRequests} />
     </div>
   );
