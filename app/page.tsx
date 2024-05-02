@@ -25,7 +25,7 @@ export default function Home() {
             <div className="signal" />
             <p className="text-base">Contact</p>
           </Link>
-          <CSSDoodleTest />
+          {/* <CSSDoodleTest /> */}
 
           <VintageGradient />
           <div className="hidden md:inline">
