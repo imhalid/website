@@ -11,7 +11,6 @@ import LineDash from './line-dash'
 export default function PullRequestTable({ node, isOpen, setIsOpen }: { node: Node; isOpen: string; setIsOpen: React.Dispatch<React.SetStateAction<string>> }) {
 
   const expanded = node.id === isOpen
-  console.log(expanded)
   const generateRepoName = (url: string) => {
     const splitUrl = url.split('/')
     return `${splitUrl[3]}/${splitUrl[4]}`

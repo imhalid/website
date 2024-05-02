@@ -4,6 +4,7 @@ import Link from "next/link"
 import SocialLinks from "@/components/social-links"
 import MainProjects from "@/components/main-projects"
 import GetRepo  from "@/components/github"
+import CSSDoodleTest from "@/components/css-doodle-test"
 export default function Home() {
 
   return (
@@ -20,6 +21,7 @@ export default function Home() {
             <div className="signal" />
             <p className="text-base">Contact</p>
           </Link>
+          <CSSDoodleTest />
 
           <VintageGradient />
           <div className="hidden md:inline">
