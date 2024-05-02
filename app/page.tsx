@@ -4,7 +4,11 @@ import Link from "next/link"
 import SocialLinks from "@/components/social-links"
 import MainProjects from "@/components/main-projects"
 import GetRepo  from "@/components/github"
-import CSSDoodleTest from "@/components/css-doodle-test"
+import dynamic from 'next/dynamic';
+
+const CSSDoodleTest = dynamic(() => import('@/components/css-doodle-test'), { ssr: false });
+
+// Now you can use CSSDoodleTest as a component in your render method
 export default function Home() {
 
   return (

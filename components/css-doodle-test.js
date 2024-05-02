@@ -3,22 +3,23 @@ import 'css-doodle';
 
 export default function CSSDoodleTest() {
   return (
-    <div>
-      {/* <style>{styleCode}</style> */}
-      <css-doodle use="var(--rule)">
-        {`
-					:doodle {
-    @grid: 5 / 10vmax;
-    background: #0a0c27;
-    font-family: sans-serif;
-  }
-  :after {
-    content: \@hex(@rand(0x2500, 0x257f));
-    color: hsla(@r(360), 70%, 70%, @r(.9));
-    font-size: 1vmax;
-  }
+    <css-doodle use="var(--rule)">
+      {`
+					 @grid: 1 / 50vw 50vh / #0a0c27;
+    background-size: 200px 200px;
+    background-image: @doodle(
+      @grid: 6 / 100%;
+      @size: 4px;
+      font-size: 4px;
+      color: hsl(@r240, 30%, 50%);
+      box-shadow: @m3x5(
+        calc(4em - @nx * 1em) calc(@ny * 1em)
+          @p(@m3(currentColor), @m2(transparent)),
+        calc(2em + @nx * 1em) calc(@ny * 1em)
+          @lp
+      );
+    );
 					`}
-      </css-doodle>
-    </div>
+    </css-doodle>
   );
 }
